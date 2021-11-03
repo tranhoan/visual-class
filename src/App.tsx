@@ -1,12 +1,12 @@
 import { Fragment } from 'react';
-import Canvas from './components/Canvas';
+import GridCanvas from './components/GridCanvas';
 import GlobalStyle from './style/global-styles';
 
 function App() {
   return (
     <Fragment>
       <GlobalStyle />
-      <Canvas />
+      <GridCanvas></GridCanvas>
     </Fragment>
   );
 }

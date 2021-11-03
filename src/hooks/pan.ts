@@ -3,17 +3,19 @@ import {
   useRef,
   useState,
   MouseEvent as SyntheticMouseEvent,
+  RefObject,
 } from 'react';
 
-type Point = {
+export type Point = {
   x: number;
   y: number;
 };
 
 const origin = { x: 0, y: 0 };
 
-function usePan(): [Point, (e: SyntheticMouseEvent) => void] {
+function usePan(): [Point, (e: SyntheticMouseEvent) => void, boolean] {
   const [panState, setPanState] = useState<Point>(origin);
+  const [isPanDisabled, setIsPanDisabled] = useState(false);
   const lastPoint = useRef(origin);
 
   const pan = useCallback((e: MouseEvent) => {
@@ -23,25 +25,27 @@ function usePan(): [Point, (e: SyntheticMouseEvent) => void] {
 
     setPanState((prevState) => {
       return {
-        x: prevState.x + (startPoint.x - currentPoint.x),
-        y: prevState.y + (startPoint.y - currentPoint.y),
+        x: currentPoint.x - startPoint.x + prevState.x,
+        y: currentPoint.y - startPoint.y + prevState.y,
       };
     });
   }, []);
 
   const endPan = useCallback(() => {
+    setIsPanDisabled(false);
     document.removeEventListener('mousemove', pan);
     document.removeEventListener('mouseup', endPan);
   }, [pan]);
   const startPan = useCallback(
     (e: SyntheticMouseEvent) => {
+      setIsPanDisabled(true);
       document.addEventListener('mousemove', pan);
       document.addEventListener('mouseup', endPan);
-      lastPoint.current = { x: e.pageX, y: e.pageY };
+      lastPoint.current = { x: e.clientX, y: e.clientY };
     },
     [pan, endPan]
   );
-  return [panState, startPan];
+  return [panState, startPan, isPanDisabled];
 }
 
 export default usePan;
