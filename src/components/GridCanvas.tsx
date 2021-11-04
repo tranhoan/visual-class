@@ -1,33 +1,30 @@
-import React, { useState } from 'react';
 import styled from 'styled-components';
 import background from '../resources/dot.svg';
-import { TransformWrapper, TransformComponent } from 'react-zoom-pan-pinch';
-import usePan, { Point } from '../hooks/pan';
+import { usePanStore } from '../hooks/pan';
+import { TransformWrapper } from 'react-zoom-pan-pinch';
+import PanWrapper from './PanWrapper';
+import DraggableElement from './DraggableElement';
 
-function GridCanvas() {
-  const [position, startPan, isPanDisabled] = usePan();
-
+const GridCanvas: React.FC = () => {
+  const panStore = usePanStore();
   return (
-    <S.CanvasWrapper>
-      <TransformWrapper
-        initialScale={2}
-        panning={{ disabled: isPanDisabled }}
-        minScale={1.5}
-        centerZoomedOut={true}
-        centerOnInit={true}
-      >
-        <TransformComponent>
+    <TransformWrapper
+      initialScale={2}
+      panning={{ disabled: panStore.isPanDisabled }}
+      minScale={1.5}
+      centerZoomedOut={true}
+      centerOnInit={true}
+    >
+      {({ state }) => (
+        <PanWrapper zoomLevel={state.scale}>
           <S.Canvas>
-            <S.Test position={position} onMouseDown={startPan}>
-              {JSON.stringify(position)}
-            </S.Test>
+            <DraggableElement />
           </S.Canvas>
-          ;
-        </TransformComponent>
-      </TransformWrapper>
-    </S.CanvasWrapper>
+        </PanWrapper>
+      )}
+    </TransformWrapper>
   );
-}
+};
 const S = {
   Canvas: styled.div`
     background-color: #f0f3fb;
@@ -38,19 +35,11 @@ const S = {
     width: 3200px;
     /* background-position: center; */
   `,
-  CanvasWrapper: styled.div`
-    /* overflow-x: hidden;
-    overflow-y: hidden; */
-  `,
-  Test: styled.div<{ position: Point }>`
+  Test: styled.div`
     height: 100px;
     width: 100px;
     color: white;
     background-color: black;
-    transform: translate(
-      ${(props) => props.position.x}px,
-      ${(props) => props.position.y}px
-    );
   `,
 };
 export default GridCanvas;

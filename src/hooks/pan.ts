@@ -3,49 +3,65 @@ import {
   useRef,
   useState,
   MouseEvent as SyntheticMouseEvent,
-  RefObject,
 } from 'react';
+import create from 'zustand';
 
 export type Point = {
   x: number;
   y: number;
 };
 
+export const usePanStore = create((set) => ({
+  draggableElements: [],
+  isPanDisabled: false,
+  setIsPanDisabled: (isPanDisabled: boolean) => set({ isPanDisabled }),
+}));
+
+export const useZoomStore = create((set) => ({
+  zoomLevel: 1,
+  setZoomLevel: (zoomLevel: number) => set({ zoomLevel: zoomLevel }),
+}));
+
 const origin = { x: 0, y: 0 };
 
-function usePan(): [Point, (e: SyntheticMouseEvent) => void, boolean] {
+function usePan(): [Point, (e: SyntheticMouseEvent) => void] {
   const [panState, setPanState] = useState<Point>(origin);
-  const [isPanDisabled, setIsPanDisabled] = useState(false);
-  const lastPoint = useRef(origin);
-
-  const pan = useCallback((e: MouseEvent) => {
-    const startPoint = lastPoint.current;
-    const currentPoint = { x: e.pageX, y: e.pageY };
-    lastPoint.current = currentPoint;
-
-    setPanState((prevState) => {
-      return {
-        x: currentPoint.x - startPoint.x + prevState.x,
-        y: currentPoint.y - startPoint.y + prevState.y,
+  const shift = useRef(origin);
+  const setIsPanDisabled = usePanStore((state) => state.setIsPanDisabled);
+  const zoom = useZoomStore((state) => state.zoomLevel);
+  const pan = useCallback(
+    (e: MouseEvent) => {
+      const currentPosition = { x: e.clientX, y: e.clientY };
+      const delta = {
+        x: (currentPosition.x - shift.current.x) / zoom,
+        y: (currentPosition.y - shift.current.y) / zoom,
       };
-    });
-  }, []);
-
+      shift.current = { x: e.clientX, y: e.clientY };
+      setPanState((prevState) => {
+        const offset = {
+          x: prevState.x + delta.x,
+          y: prevState.y + delta.y,
+        };
+        return offset;
+      });
+    },
+    [zoom]
+  );
   const endPan = useCallback(() => {
     setIsPanDisabled(false);
     document.removeEventListener('mousemove', pan);
     document.removeEventListener('mouseup', endPan);
-  }, [pan]);
+  }, [pan, setIsPanDisabled]);
   const startPan = useCallback(
     (e: SyntheticMouseEvent) => {
+      shift.current = { x: e.clientX, y: e.clientY };
       setIsPanDisabled(true);
       document.addEventListener('mousemove', pan);
       document.addEventListener('mouseup', endPan);
-      lastPoint.current = { x: e.clientX, y: e.clientY };
     },
-    [pan, endPan]
+    [pan, endPan, setIsPanDisabled]
   );
-  return [panState, startPan, isPanDisabled];
+  return [panState, startPan];
 }
 
 export default usePan;
