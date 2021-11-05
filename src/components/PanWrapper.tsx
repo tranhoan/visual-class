@@ -3,6 +3,7 @@ import { TransformComponent } from 'react-zoom-pan-pinch';
 import { useZoomStore } from '../hooks/pan';
 import background from '../resources/dot.svg';
 import styled from 'styled-components';
+import colors from '../style/colors';
 
 type Props = {
   zoomLevel: number;
@@ -20,7 +21,7 @@ const PanWrapper: React.FC<Props> = ({ children, zoomLevel }) => {
 };
 const S = {
   Canvas: styled.div`
-    background-color: #f0f3fb;
+    background-color: ${colors.backgroundBlue};
     background-image: url(${background});
     background-repeat: repeat;
     background-size: auto;

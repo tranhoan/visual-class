@@ -1,12 +1,12 @@
 import { Fragment } from 'react';
-import GridCanvas from './components/GridCanvas';
+import VirtualSpace from './components/VirtualSpace';
 import GlobalStyle from './style/global-styles';
 
 function App() {
   return (
     <Fragment>
       <GlobalStyle />
-      <GridCanvas></GridCanvas>
+      <VirtualSpace></VirtualSpace>
     </Fragment>
   );
 }
