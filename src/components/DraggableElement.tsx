@@ -1,8 +1,11 @@
-import React from 'react';
+import React, { ReactElement } from 'react';
 import styled from 'styled-components';
 import usePan from '../hooks/pan';
 
-const DraggableElement: React.FC = (props) => {
+type Props = {
+  renderDraggable: () => ReactElement;
+};
+const DraggableElement: React.FC<Props> = ({ renderDraggable }) => {
   const [position, startPan] = usePan();
   return (
     <S.DraggableWrapper
@@ -11,16 +14,15 @@ const DraggableElement: React.FC = (props) => {
         transform: `translate(${position.x}px,${position.y}px)`,
       }}
     >
-      {props.children}
+      {renderDraggable()}
     </S.DraggableWrapper>
   );
 };
 const S = {
   DraggableWrapper: styled.div`
-    height: 100px;
-    width: 100px;
-    color: white;
-    background-color: black;
+    &:hover {
+      cursor: pointer;
+    }
   `,
 };
 export default DraggableElement;

@@ -4,6 +4,7 @@ import { TransformWrapper } from 'react-zoom-pan-pinch';
 import PanWrapper from './PanWrapper';
 import DraggableElement from './DraggableElement';
 import Toolbar from './Toolbar';
+import UserIcon from './UserIcon';
 
 const VirtualSpace: React.FC = () => {
   const isPanDisabled = usePanStore((state) => state.isPanDisabled);
@@ -18,7 +19,9 @@ const VirtualSpace: React.FC = () => {
       >
         {({ state }) => (
           <PanWrapper zoomLevel={state.scale}>
-            <DraggableElement />
+            <DraggableElement
+              renderDraggable={() => <UserIcon initials='HT' />}
+            />
           </PanWrapper>
         )}
       </TransformWrapper>

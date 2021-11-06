@@ -24,7 +24,7 @@ export const useZoomStore = create((set) => ({
 
 const origin = { x: 0, y: 0 };
 
-function usePan(): [Point, (e: SyntheticMouseEvent) => void] {
+const usePan = (): [Point, (e: SyntheticMouseEvent) => void] => {
   const [panState, setPanState] = useState<Point>(origin);
   const shift = useRef(origin);
   const setIsPanDisabled = usePanStore((state) => state.setIsPanDisabled);
@@ -62,6 +62,6 @@ function usePan(): [Point, (e: SyntheticMouseEvent) => void] {
     [pan, endPan, setIsPanDisabled]
   );
   return [panState, startPan];
-}
+};
 
 export default usePan;

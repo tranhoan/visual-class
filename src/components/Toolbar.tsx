@@ -27,10 +27,10 @@ const S = {
     bottom: 3.2rem;
     transform: translateX(-50%);
     position: fixed;
-    padding: 1.2rem 4.8rem;
+    padding: 0.8rem 4.8rem;
     display: grid;
     grid-auto-flow: column;
-    column-gap: 2.4rem;
+    column-gap: 1.6rem;
   `,
 };
 export default Toolbar;
