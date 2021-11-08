@@ -12,6 +12,10 @@ const GlobalStyle = createGlobalStyle`
     --textBlack: #0d0000;
     --backgroundGrey: #d9d9d9;
     --additionalWhite: #ffffff;
+    --additionalGreen: #89d9ab;
+    --additionalRed: #d97b73;
+    --successGreenHover: rgba(49, 191, 110, 0.2);
+    --errorRedHover: rgba(217, 123, 115, 0.3);
     --shadow-color: 0deg 0% 0%;
     height: 100%;
     font-size: 62.5%;

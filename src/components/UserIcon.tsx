@@ -12,6 +12,7 @@ const UserIcon: React.FC<Props> = ({ initials }) => {
   useStreamWebcam(videoRef);
   return (
     <S.UserIconWrapper>
+      {console.log(isWebcamOn)}
       {isWebcamOn ? (
         <S.Video ref={videoRef}></S.Video>
       ) : (
