@@ -1,23 +1,18 @@
-import React, { useRef } from 'react';
+import React from 'react';
 import styled from 'styled-components';
-import { useStreamWebcam, useUserStore } from '../hooks/user';
+import { useUserStore } from '../hooks/user';
 import elevations from '../style/elevations';
+import Video from './Video';
 
 type Props = {
   initials: string;
 };
 const UserIcon: React.FC<Props> = ({ initials }) => {
   const isWebcamOn = useUserStore((state) => state.isWebcamOn);
-  const videoRef = useRef(null);
-  useStreamWebcam(videoRef);
   return (
     <S.UserIconWrapper>
       {console.log(isWebcamOn)}
-      {isWebcamOn ? (
-        <S.Video ref={videoRef}></S.Video>
-      ) : (
-        <span>{initials}</span>
-      )}
+      {isWebcamOn ? <Video /> : <span>{initials}</span>}
     </S.UserIconWrapper>
   );
 };
@@ -32,15 +27,6 @@ const S = {
     background-color: black;
     --shadow-color: 224deg 58% 81%;
     box-shadow: ${elevations.medium};
-  `,
-  Video: styled.video`
-    object-fit: cover;
-    overflow: hidden;
-    border-radius: 50%;
-    min-height: 100%;
-    min-width: 100%;
-    width: auto;
-    height: auto;
   `,
 };
 export default UserIcon;

@@ -1,4 +1,4 @@
-import { RefObject, useCallback, useEffect } from 'react';
+import { RefObject, useCallback, useEffect, useRef, useState } from 'react';
 import create from 'zustand';
 
 type UserDataType = {
@@ -20,31 +20,35 @@ export const useStreamWebcam = (
   targetElementRef: RefObject<HTMLVideoElement>
 ): [enable: () => void, disable: () => void] => {
   const isWebcamOn = useUserStore((state) => state.isWebcamOn);
+  const videoRef = useRef(targetElementRef.current);
   const enableWebcam = useCallback(() => {
-    const video = targetElementRef.current;
-    if (!video) {
-      return;
-    }
+    videoRef.current = targetElementRef.current;
     navigator.mediaDevices
       .getUserMedia({ video: true })
       .then((stream) => {
-        video!.srcObject = stream;
-        video!.play();
+        videoRef.current!.srcObject = stream;
+        videoRef.current!.play();
       })
       .catch((err) => {
         console.error('error:', err);
       });
   }, [targetElementRef]);
   const disableWebcam = useCallback(() => {
-    var stream = targetElementRef!.current!.srcObject as MediaStream;
+    if (!videoRef.current || !videoRef.current.srcObject) {
+      return;
+    }
+    var stream = videoRef.current.srcObject as MediaStream;
     var tracks = stream.getTracks();
     for (let i = 0; i < tracks.length; i++) {
       let track = tracks[i];
       track.stop();
     }
-  }, [targetElementRef]);
+  }, []);
   useEffect(() => {
     enableWebcam();
-  }, [enableWebcam, isWebcamOn]);
+    return () => {
+      disableWebcam();
+    };
+  }, [enableWebcam, isWebcamOn, disableWebcam]);
   return [enableWebcam, disableWebcam];
 };
