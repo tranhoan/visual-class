@@ -12,7 +12,6 @@ export type Point = {
 };
 
 export const usePanStore = create((set) => ({
-  draggableElements: [],
   isPanDisabled: false,
   setIsPanDisabled: (isPanDisabled: boolean) => set({ isPanDisabled }),
 }));

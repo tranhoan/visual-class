@@ -82,7 +82,8 @@ const S = {
     box-shadow: ${elevations.large};
     position: fixed;
     height: 86vh;
-    padding: 3.2rem 2.4rem;
+    padding: ${(props) =>
+      props.isHidden ? '3.2rem 2.4rem' : '3.2rem 4.8rem 3.2rem 2.4rem'};
     background-color: ${colors.additionalWhite};
     left: 3.2rem;
     bottom: 50%;
@@ -90,7 +91,7 @@ const S = {
     border-radius: 12px;
     display: flex;
     transition: width 200ms ease-in-out;
-    width: ${(props) => (props.isHidden ? '4rem' : '30rem')};
+    width: ${(props) => (props.isHidden ? '4rem' : '35rem')};
   `,
   Logo: styled.img.attrs({
     src: logo,

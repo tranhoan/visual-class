@@ -1,6 +1,6 @@
 import React, { Fragment } from 'react';
 import styled from 'styled-components';
-import ParticipantsDetail from '../ParticipantsDetail';
+import ParticipantsDetail from '../sidebar/ParticipantsDetail';
 
 type Props = {
   contentType: SidebarContent;

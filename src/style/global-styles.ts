@@ -21,6 +21,7 @@ const GlobalStyle = createGlobalStyle`
     --shadow-color: 0deg 0% 0%;
     height: 100%;
     font-size: 62.5%;
+    letter-spacing: 0.1px;
     body, html, #root{ 
         height: 100%;
     }
