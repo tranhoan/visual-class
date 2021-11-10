@@ -14,8 +14,10 @@ const GlobalStyle = createGlobalStyle`
     --additionalWhite: #ffffff;
     --additionalGreen: #89d9ab;
     --additionalRed: #d97b73;
+    --additionalGrey: #b7b7b7;
     --successGreenHover: rgba(49, 191, 110, 0.2);
     --errorRedHover: rgba(217, 123, 115, 0.3);
+    --middleGrey: #cbcbcb;
     --shadow-color: 0deg 0% 0%;
     height: 100%;
     font-size: 62.5%;
@@ -24,7 +26,7 @@ const GlobalStyle = createGlobalStyle`
     }
     body {
         margin: 0;
-        font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen','Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans', 'Helvetica Neue', sans-serif;
+        font-family: 'Sora', -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen','Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans', 'Helvetica Neue', sans-serif;
         -webkit-font-smoothing: antialiased;
         -moz-osx-font-smoothing: grayscale;
 

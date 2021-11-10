@@ -5,16 +5,16 @@ import PanWrapper from './PanWrapper';
 import DraggableElement from './DraggableElement';
 import Toolbar from './Toolbar';
 import UserIcon from './UserIcon';
-import Sidebar from './Sidebar';
+import Sidebar from './sidebar/Sidebar';
 
 const VirtualSpace: React.FC = () => {
   const isPanDisabled = usePanStore((state) => state.isPanDisabled);
   return (
     <S.SpaceWrapper>
       <TransformWrapper
-        initialScale={2}
+        initialScale={1}
         panning={{ disabled: isPanDisabled }}
-        minScale={1.5}
+        minScale={1}
         centerZoomedOut={true}
         centerOnInit={true}
       >

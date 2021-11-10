@@ -13,12 +13,13 @@ const Toolbar: React.FC = () => {
       <S.ToolbarWrapper>
         {Object.values(toolbarData).map((item) => {
           return item.type === 'normal' ? (
-            <ToolbarItemButton onClick={item.onClick}>
+            <ToolbarItemButton onClick={item.onClick} key={item.name}>
               {item.renderIcon()}
             </ToolbarItemButton>
           ) : (
             <ActiveItemButton
               onClick={userStore[item.type[1]]}
+              key={item.name}
               isActive={userStore[item.type[0]]}
             >
               {item.renderIcon()}

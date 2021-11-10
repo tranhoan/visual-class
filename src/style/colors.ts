@@ -10,7 +10,9 @@ const colors = {
   textBlack: 'var(--textBlack)',
   additionalGreen: 'var(--additionalGreen)',
   additionalRed: 'var(--additionalRed)',
+  additionalGrey: 'var(--additionalGrey)',
   successGreenHover: 'var(--successGreenHover)',
   errorRedHover: 'var(--errorRedHover)',
+  middleGrey: 'var(--middleGrey)',
 };
 export default colors;
