@@ -1,7 +1,6 @@
 import React from 'react';
 import styled from 'styled-components';
 import { UserType } from '../../data/users-data';
-import colors from '../../style/colors';
 import { Content as CollapsibleContent } from '../Collapsible';
 import Lottie from 'lottie-react';
 import speakingAnimation from '../../resources/volume.json';
@@ -14,7 +13,7 @@ type Props = {
 const ParticipantRow: React.FC<Props> = ({ participant }) => {
   return (
     <S.Row>
-      <S.Icon>{participant.initials}</S.Icon>
+      <S.Icon iconColor={participant.color}>{participant.initials}</S.Icon>
       <S.Name>{participant.name}</S.Name>
       <S.ActionIcons>
         <S.RaisedHandButton
@@ -38,21 +37,23 @@ const S = {
     ${CollapsibleContent} & {
       margin-bottom: 2.4rem;
       display: grid;
-      grid-template-columns: 3rem 16rem 8rem;
+      grid-template-columns: 3rem 15rem auto;
       grid-gap: 1.6rem;
       align-items: center;
     }
   `,
-  Icon: styled.div`
+  Icon: styled.div<{ iconColor: string }>`
     height: 3rem;
     width: 3rem;
     margin-right: 1.6rem;
     border-radius: 50%;
     color: white;
-    background-color: ${colors.additionalRed};
+    background-color: ${(props) => props.iconColor};
     display: flex;
     justify-content: center;
     align-items: center;
+    font-size: 1.1rem;
+    font-weight: 400;
   `,
   Name: styled.div`
     font-size: 1.4rem;

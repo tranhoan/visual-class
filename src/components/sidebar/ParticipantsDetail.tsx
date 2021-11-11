@@ -10,7 +10,12 @@ const ParticipantsDetail: React.FC = () => {
     <S.SidebarWrapper>
       <Collapsbile heading={'Přítomní studenti'}>
         {participants.map((p) => {
-          return <ParticipantRow participant={p} />;
+          return p.isOnline && <ParticipantRow participant={p} />;
+        })}
+      </Collapsbile>
+      <Collapsbile heading={'Nepřítomní studenti'}>
+        {participants.map((p) => {
+          return !p.isOnline && <ParticipantRow participant={p} />;
         })}
       </Collapsbile>
     </S.SidebarWrapper>
@@ -18,7 +23,7 @@ const ParticipantsDetail: React.FC = () => {
 };
 const S = {
   SidebarWrapper: styled.div`
-    margin: 0 4rem 0 5.6rem;
+    margin: 0 4rem 0 4.8rem;
     width: max-content;
   `,
 };

@@ -15,6 +15,11 @@ const GlobalStyle = createGlobalStyle`
     --additionalGreen: #89d9ab;
     --additionalRed: #d97b73;
     --additionalGrey: #b7b7b7;
+    --additionalOrange: #f2b279;
+    --additionalOrange2: #D97904;
+    --additionalOrange3: #FF914D;
+    --darkGreen: #475942;
+    --additionalBlue: #78A3FF;
     --successGreenHover: rgba(49, 191, 110, 0.2);
     --errorRedHover: rgba(217, 123, 115, 0.3);
     --middleGrey: #cbcbcb;

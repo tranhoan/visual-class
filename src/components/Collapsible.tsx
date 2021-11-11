@@ -16,7 +16,9 @@ const Collapsbile: React.FC<Props> = ({ children, heading }) => {
     </Collapsible>
   );
 };
-const Collapsible = styled.div``;
+const Collapsible = styled.div`
+  margin-bottom: 4rem;
+`;
 const Header = styled.div`
   display: flex;
   align-items: center;
@@ -35,7 +37,7 @@ export const Content = styled.section<{ $isCollapsed: boolean }>`
 const Heading = styled.h2`
   font-weight: 400;
   font-size: 1.6rem;
-  margin-right: 0.8rem;
+  margin: 0 0.8rem 0 0;
 `;
 const CustomAccordion = styled(HiChevronUp)<{ $isCollapsed: boolean }>`
   transform: rotate(${(props) => (props.$isCollapsed ? '180deg' : '0deg')});

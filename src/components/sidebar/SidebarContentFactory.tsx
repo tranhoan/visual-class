@@ -41,6 +41,7 @@ const SidebarContentFactory: React.FC<Props> = ({
 const S = {
   ContentWrapper: styled.div<{ $display: boolean }>`
     visibility: ${(props) => (props.$display ? 'visible' : 'hidden')};
+    width: 100%;
   `,
 };
 export default SidebarContentFactory;

@@ -14,5 +14,10 @@ const colors = {
   successGreenHover: 'var(--successGreenHover)',
   errorRedHover: 'var(--errorRedHover)',
   middleGrey: 'var(--middleGrey)',
+  additionalOrange: 'var(--additionalOrange)',
+  additionalOrange2: 'var(--additionalOrange2)',
+  additionalOrange3: 'var(--addtionalOrange3)',
+  darkGreen: 'var(--darkGreen)',
+  addtionalBlue: 'var(--additionalBlue)',
 };
 export default colors;

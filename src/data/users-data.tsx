@@ -1,3 +1,5 @@
+import colors from '../style/colors';
+
 export interface UsersDataRecord {
   [key: string]: UserType;
 }
@@ -8,6 +10,7 @@ export type UserType = {
   isSpeaking: boolean;
   isHandRaised: boolean;
   isOnline: boolean;
+  color: string;
 };
 export const participants: UsersDataRecord = {
   user1: {
@@ -17,6 +20,7 @@ export const participants: UsersDataRecord = {
     isSpeaking: false,
     isHandRaised: false,
     isOnline: true,
+    color: colors.additionalOrange2,
   },
   user2: {
     id: 1,
@@ -25,6 +29,7 @@ export const participants: UsersDataRecord = {
     isSpeaking: false,
     isHandRaised: false,
     isOnline: true,
+    color: colors.addtionalBlue,
   },
   user3: {
     id: 3,
@@ -33,6 +38,7 @@ export const participants: UsersDataRecord = {
     isSpeaking: false,
     isHandRaised: false,
     isOnline: true,
+    color: colors.additionalOrange,
   },
   user4: {
     id: 4,
@@ -41,6 +47,7 @@ export const participants: UsersDataRecord = {
     isSpeaking: false,
     isHandRaised: true,
     isOnline: true,
+    color: colors.additionalRed,
   },
   user5: {
     id: 5,
@@ -49,6 +56,7 @@ export const participants: UsersDataRecord = {
     isSpeaking: true,
     isHandRaised: false,
     isOnline: true,
+    color: colors.secondaryBlue,
   },
   user6: {
     id: 6,
@@ -57,6 +65,7 @@ export const participants: UsersDataRecord = {
     isSpeaking: false,
     isHandRaised: false,
     isOnline: true,
+    color: colors.successGreen,
   },
   user7: {
     id: 7,
@@ -65,13 +74,15 @@ export const participants: UsersDataRecord = {
     isSpeaking: false,
     isHandRaised: false,
     isOnline: false,
+    color: colors.textGrey,
   },
   user8: {
     id: 8,
     name: 'Martin Zelený',
     initials: 'MZ',
     isSpeaking: false,
-    isHandRaised: true,
+    isHandRaised: false,
     isOnline: false,
+    color: colors.darkGreen,
   },
 };
