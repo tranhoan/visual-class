@@ -1,5 +1,5 @@
 const elevations = {
-  small: `0.5px 1px 1px hsl(var(--shadow-color) / 0.7`,
+  small: `0.5px 1px 1px hsl(var(--shadow-color) / 0.8)`,
   medium: `1px 2px 2px hsl(var(--shadow-color) / 0.333),
     2px 4px 4px hsl(var(--shadow-color) / 0.333),
     3px 6px 6px hsl(var(--shadow-color) / 0.333)`,

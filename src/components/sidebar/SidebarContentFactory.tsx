@@ -42,6 +42,8 @@ const S = {
   ContentWrapper: styled.div<{ $display: boolean }>`
     visibility: ${(props) => (props.$display ? 'visible' : 'hidden')};
     width: 100%;
+    display: flex;
+    flex-direction: column;
   `,
 };
 export default SidebarContentFactory;

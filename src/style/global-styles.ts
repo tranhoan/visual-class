@@ -26,16 +26,18 @@ const GlobalStyle = createGlobalStyle`
     --shadow-color: 0deg 0% 0%;
     height: 100%;
     font-size: 62.5%;
-    letter-spacing: 0.1px;
     body, html, #root{ 
         height: 100%;
     }
     body {
         margin: 0;
-        font-family: 'Sora', -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen','Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans', 'Helvetica Neue', sans-serif;
         -webkit-font-smoothing: antialiased;
         -moz-osx-font-smoothing: grayscale;
 
+    }
+    body, button {
+        font-family: 'Sora', -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen','Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans', 'Helvetica Neue', sans-serif;
+        letter-spacing: 0.1px;
     }
     #root{
         /* overflow: hidden; */
