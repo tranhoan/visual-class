@@ -6,6 +6,7 @@ import DraggableElement from './DraggableElement';
 import Toolbar from './Toolbar';
 import UserIcon from './UserIcon';
 import Sidebar from './sidebar/Sidebar';
+import ToolTip from './layout/Tooltip';
 
 const VirtualSpace: React.FC = () => {
   const isPanDisabled = usePanStore((state) => state.isPanDisabled);
@@ -28,6 +29,7 @@ const VirtualSpace: React.FC = () => {
       </TransformWrapper>
       <Sidebar />
       <Toolbar />
+      <ToolTip />
     </S.SpaceWrapper>
   );
 };

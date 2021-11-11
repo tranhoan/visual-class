@@ -19,7 +19,7 @@ const Button: React.FC<Props> = ({ renderIcon, children }) => {
 };
 
 const StyledButton = styled(BareButton)`
-  --shadow-color: 214 97% 23%;
+  --shadow-color: 0 0% 55%;
   background-color: ${colors.primaryBlue};
   color: ${colors.additionalWhite};
   font-size: 1.4rem;

@@ -4,13 +4,17 @@ import colors from '../../style/colors';
 import elevations from '../../style/elevations';
 import logo from '../../resources/logo.svg';
 import { IconContext } from 'react-icons/lib';
-import { HiUsers, HiChartPie, HiChatAlt2, HiCog } from 'react-icons/hi';
 import { SidebarContentType, SidebarContent } from './SidebarContentFactory';
 import SidebarContentFactory from './SidebarContentFactory';
+import { useTooltip, useTooltipArrayRef } from '../../hooks/tooltip';
+import { sidebarData } from '../../data/sidebar-data';
 
 const Sidebar: React.FC = () => {
   const [contentType, setContentType] = useState<SidebarContent>(null);
   const [displayContent, setDisplayContent] = useState<boolean>(false);
+  const { onMouseEnter, onMouseLeave } = useTooltip<HTMLDivElement>();
+  const refs = useTooltipArrayRef<HTMLDivElement>(4);
+
   const compareActive = (type: SidebarContentType): boolean => {
     if (!contentType) {
       return false;
@@ -43,30 +47,22 @@ const Sidebar: React.FC = () => {
       >
         <S.Menu>
           <S.Logo />
-          <S.SidebarItem
-            isActive={compareActive(SidebarContentType.PARTICIPANTS)}
-            onClick={() => manageContentType(SidebarContentType.PARTICIPANTS)}
-          >
-            <HiUsers />
-          </S.SidebarItem>
-          <S.SidebarItem
-            isActive={compareActive(SidebarContentType.QUIZ)}
-            onClick={() => manageContentType(SidebarContentType.QUIZ)}
-          >
-            <HiChartPie />
-          </S.SidebarItem>
-          <S.SidebarItem
-            isActive={compareActive(SidebarContentType.CHAT)}
-            onClick={() => manageContentType(SidebarContentType.CHAT)}
-          >
-            <HiChatAlt2 />
-          </S.SidebarItem>
-          <S.SidebarItem
-            isActive={compareActive(SidebarContentType.SETTINGS)}
-            onClick={() => manageContentType(SidebarContentType.SETTINGS)}
-          >
-            <HiCog />
-          </S.SidebarItem>
+          {Object.values(sidebarData).map((item, index) => {
+            return (
+              <S.SidebarItem
+                isActive={compareActive(item.type)}
+                onClick={() => manageContentType(item.type)}
+                ref={(e) => (refs!.current[index] = e)}
+                key={item.tooltip}
+                onMouseEnter={() =>
+                  onMouseEnter(refs!.current[index], 'right', item.tooltip)
+                }
+                onMouseLeave={() => onMouseLeave()}
+              >
+                {item.icon}
+              </S.SidebarItem>
+            );
+          })}
         </S.Menu>
         <SidebarContentFactory
           contentType={contentType}

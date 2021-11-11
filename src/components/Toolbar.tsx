@@ -5,15 +5,28 @@ import elevations from '../style/elevations';
 import { IconContext } from 'react-icons/lib';
 import { toolbarData } from '../data/toolbar-data';
 import { useUserStore } from '../hooks/user';
+import { useTooltip, useTooltipArrayRef } from '../hooks/tooltip';
 
 const Toolbar: React.FC = () => {
   const userStore = useUserStore();
+  const { onMouseEnter, onMouseLeave } = useTooltip<HTMLButtonElement>();
+  const objectLength = Object.values(toolbarData).length;
+  const toolbarRefs = useTooltipArrayRef<HTMLButtonElement>(objectLength);
+
   return (
     <IconContext.Provider value={{ size: '2.4rem' }}>
       <S.ToolbarWrapper>
-        {Object.values(toolbarData).map((item) => {
+        {Object.values(toolbarData).map((item, i) => {
           return item.type === 'normal' ? (
-            <ToolbarItemButton onClick={item.onClick} key={item.name}>
+            <ToolbarItemButton
+              onClick={item.onClick}
+              key={item.name}
+              ref={(e) => (toolbarRefs!.current[i] = e)}
+              onMouseEnter={() =>
+                onMouseEnter(toolbarRefs!.current[i], 'top', item.name)
+              }
+              onMouseLeave={() => onMouseLeave()}
+            >
               {item.renderIcon()}
             </ToolbarItemButton>
           ) : (
@@ -21,6 +34,11 @@ const Toolbar: React.FC = () => {
               onClick={userStore[item.type[1]]}
               key={item.name}
               isActive={userStore[item.type[0]]}
+              ref={(e) => (toolbarRefs!.current[i] = e)}
+              onMouseEnter={() =>
+                onMouseEnter(toolbarRefs!.current[i], 'top', item.name)
+              }
+              onMouseLeave={() => onMouseLeave()}
             >
               {item.renderIcon()}
             </ActiveItemButton>
@@ -54,7 +72,7 @@ const ToolbarItemButton = styled.button`
   justify-content: center;
   align-items: center;
   padding: 2.4rem;
-  transition: all 50ms linear;
+  transition: all 100ms linear;
   border: none;
   &:hover {
     background-color: ${colors.backgroundBlue};
