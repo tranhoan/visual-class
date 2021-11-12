@@ -4,13 +4,21 @@ import colors from '../../style/colors';
 import elevations from '../../style/elevations';
 import logo from '../../resources/logo.svg';
 import { IconContext } from 'react-icons/lib';
-import { SidebarContentType, SidebarContent } from './SidebarContentFactory';
+import { SidebarContentType } from './SidebarContentFactory';
 import SidebarContentFactory from './SidebarContentFactory';
 import { useTooltip, useTooltipArrayRef } from '../../hooks/tooltip';
 import { sidebarData } from '../../data/sidebar-data';
+import { useUserStore } from '../../hooks/user';
+import shallow from 'zustand/shallow';
 
 const Sidebar: React.FC = () => {
-  const [contentType, setContentType] = useState<SidebarContent>(null);
+  const { contentType, setContentType } = useUserStore(
+    (state) => ({
+      contentType: state.sidebarContent,
+      setContentType: state.setSidebarContent,
+    }),
+    shallow
+  );
   const [displayContent, setDisplayContent] = useState<boolean>(false);
   const { onMouseEnter, onMouseLeave } = useTooltip<HTMLDivElement>();
   const refs = useTooltipArrayRef<HTMLDivElement>(4);

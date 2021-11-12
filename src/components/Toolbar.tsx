@@ -15,7 +15,7 @@ const Toolbar: React.FC = () => {
 
   return (
     <IconContext.Provider value={{ size: '2.4rem' }}>
-      <S.ToolbarWrapper>
+      <S.ToolbarWrapper isSidebarHidden={userStore.sidebarContent === null}>
         {Object.values(toolbarData).map((item, i) => {
           return item.type === 'normal' ? (
             <ToolbarItemButton
@@ -49,14 +49,17 @@ const Toolbar: React.FC = () => {
   );
 };
 const S = {
-  ToolbarWrapper: styled.div`
+  ToolbarWrapper: styled.div<{ isSidebarHidden: boolean }>`
     --shadow-color: 224deg 58% 88%;
     box-shadow: ${elevations.large};
     border-radius: 12px;
     background-color: ${colors.additionalWhite};
     left: 50%;
     bottom: 3.2rem;
-    transform: translateX(-50%);
+    transition: transform 200ms ease-in-out;
+    transform: translateX(
+      ${(props) => (props.isSidebarHidden ? '-50%' : '-20%')}
+    );
     position: fixed;
     padding: 0.8rem 4.8rem;
     display: grid;

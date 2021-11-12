@@ -1,12 +1,15 @@
 import { RefObject, useCallback, useEffect, useRef } from 'react';
 import create from 'zustand';
+import { SidebarContent } from '../components/sidebar/SidebarContentFactory';
 import { UserType } from '../data/users-data';
 
 type UserDataType = {
   isWebcamOn: boolean;
   isMicOn: boolean;
+  sidebarContent: SidebarContent;
   setIsWebcamOn: () => void;
   setIsMicOn: () => void;
+  setSidebarContent: (content: SidebarContent) => void;
 };
 
 type ParticipantStoreType = {
@@ -17,9 +20,11 @@ type ParticipantStoreType = {
 export const useUserStore = create<UserDataType>((set) => ({
   isWebcamOn: true,
   isMicOn: true,
+  sidebarContent: null,
   setIsWebcamOn: () =>
     set((prevState) => ({ isWebcamOn: !prevState.isWebcamOn })),
   setIsMicOn: () => set((prevState) => ({ isMicOn: !prevState.isMicOn })),
+  setSidebarContent: (content) => set({ sidebarContent: content }),
 }));
 
 export const useParticipantsStore = create<ParticipantStoreType>((set) => ({
