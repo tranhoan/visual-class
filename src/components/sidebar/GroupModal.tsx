@@ -75,6 +75,12 @@ const ModalInput = styled.input`
     'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans', 'Helvetica Neue',
     sans-serif;
   width: 95%;
+  &:focus,
+  &:active {
+    outline: none;
+    border-bottom: 1px solid ${colors.primaryBlue};
+    transition: all 200ms ease-in-out;
+  }
 `;
 
 const DialogButton = styled(Button)`
