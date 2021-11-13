@@ -48,36 +48,38 @@ const Sidebar: React.FC = () => {
   };
 
   return (
-    <IconContext.Provider value={{ size: '2.4rem' }}>
-      <S.Sidebar
-        isHidden={contentType === null}
-        onTransitionEnd={(e) => displayContentOnTransitionEnd(e)}
-      >
-        <S.Menu>
-          <S.Logo />
-          {Object.values(sidebarData).map((item, index) => {
-            return (
-              <S.SidebarItem
-                isActive={compareActive(item.type)}
-                onClick={() => manageContentType(item.type)}
-                ref={(e) => (refs!.current[index] = e)}
-                key={item.tooltip}
-                onMouseEnter={() =>
-                  onMouseEnter(refs!.current[index], 'right', item.tooltip)
-                }
-                onMouseLeave={() => onMouseLeave()}
-              >
-                {item.icon}
-              </S.SidebarItem>
-            );
-          })}
-        </S.Menu>
-        <SidebarContentFactory
-          contentType={contentType}
-          displayContent={displayContent}
-        />
-      </S.Sidebar>
-    </IconContext.Provider>
+    <S.SidebarWrapper id='sidebar-portal'>
+      <IconContext.Provider value={{ size: '2.4rem' }}>
+        <S.Sidebar
+          isHidden={contentType === null}
+          onTransitionEnd={(e) => displayContentOnTransitionEnd(e)}
+        >
+          <S.Menu>
+            <S.Logo />
+            {Object.values(sidebarData).map((item, index) => {
+              return (
+                <S.SidebarItem
+                  isActive={compareActive(item.type)}
+                  onClick={() => manageContentType(item.type)}
+                  ref={(e) => (refs!.current[index] = e)}
+                  key={item.tooltip}
+                  onMouseEnter={() =>
+                    onMouseEnter(refs!.current[index], 'right', item.tooltip)
+                  }
+                  onMouseLeave={() => onMouseLeave()}
+                >
+                  {item.icon}
+                </S.SidebarItem>
+              );
+            })}
+          </S.Menu>
+          <SidebarContentFactory
+            contentType={contentType}
+            displayContent={displayContent}
+          />
+        </S.Sidebar>
+      </IconContext.Provider>
+    </S.SidebarWrapper>
   );
 };
 const S = {
@@ -96,6 +98,7 @@ const S = {
     display: flex;
     transition: width 200ms ease-in-out;
     width: ${(props) => (props.isHidden ? '4rem' : '35rem')};
+    z-index: 2;
   `,
   Logo: styled.img.attrs({
     src: logo,
@@ -121,6 +124,9 @@ const S = {
     &:hover {
       background-color: ${colors.backgroundBlue};
     }
+  `,
+  SidebarWrapper: styled.div`
+    display: relative;
   `,
 };
 export default Sidebar;

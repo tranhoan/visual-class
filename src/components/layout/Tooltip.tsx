@@ -45,7 +45,7 @@ const Tooltip = styled.div<{
     'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans', 'Helvetica Neue',
     sans-serif;
   line-height: 1;
-  z-index: 1;
+  z-index: 10;
   white-space: nowrap;
   padding: 0.8rem 1.6rem;
   color: white;

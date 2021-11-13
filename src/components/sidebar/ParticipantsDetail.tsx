@@ -1,28 +1,39 @@
-import React from 'react';
+import React, { useState } from 'react';
 import { HiPlus } from 'react-icons/hi';
 import styled from 'styled-components';
 import { useParticipantsStore } from '../../hooks/user';
 import Collapsbile from '../Collapsible';
 import Button from '../layout/Button';
+import GroupModal from './GroupModal';
 import ParticipantRow from './ParticipantRow';
 
 const ParticipantsDetail: React.FC = () => {
   const participants = useParticipantsStore((state) => state.participants);
+  const [isGroupDialogHidden, setIsGroupDialogHidden] = useState(true);
   return (
     <SidebarWrapper>
       <MainContent>
         <Collapsbile heading={'Přítomní studenti'}>
           {participants.map((p) => {
-            return p.isOnline && <ParticipantRow participant={p} />;
+            return p.isOnline && <ParticipantRow participant={p} key={p.id} />;
           })}
         </Collapsbile>
         <Collapsbile heading={'Nepřítomní studenti'}>
           {participants.map((p) => {
-            return !p.isOnline && <ParticipantRow participant={p} />;
+            return !p.isOnline && <ParticipantRow participant={p} key={p.id} />;
           })}
         </Collapsbile>
       </MainContent>
-      <Button renderIcon={() => <HiPlus />}>Vytvořit skupiny</Button>
+      <Button
+        renderIcon={() => <HiPlus />}
+        onClick={() => setIsGroupDialogHidden(false)}
+      >
+        Vytvořit skupiny
+      </Button>
+      <GroupModal
+        isHidden={isGroupDialogHidden}
+        hide={() => setIsGroupDialogHidden(true)}
+      />
     </SidebarWrapper>
   );
 };

@@ -1,5 +1,6 @@
 const colors = {
   backgroundBlue: 'var(--backgroundBlue)',
+  backgroundGrey: 'var(--backgroundGrey)',
   primaryBlue: 'var(--primaryBlue)',
   secondaryBlue: 'var(--secondaryBlue)',
   tertiaryBlue: 'var(--tertiaryBlue)',

@@ -1,17 +1,26 @@
-import React, { ReactElement } from 'react';
+import React, { Fragment, ReactElement } from 'react';
 import styled from 'styled-components';
 import { BareButton } from '../../style/button';
 import colors from '../../style/colors';
 import elevations from '../../style/elevations';
 
 type Props = {
-  renderIcon: () => ReactElement;
+  renderIcon?: () => ReactElement;
+  onClick: () => void;
+  className?: string;
 };
-const Button: React.FC<Props> = ({ renderIcon, children }) => {
+const Button: React.FC<Props> = ({
+  renderIcon,
+  children,
+  onClick,
+  className,
+}) => {
+  const renderOptionalIcon =
+    renderIcon === undefined ? () => <Fragment /> : renderIcon;
   return (
-    <StyledButton>
-      <IconWrapper $isRendered={renderIcon !== null}>
-        {renderIcon()}
+    <StyledButton onClick={onClick} className={className}>
+      <IconWrapper $isRendered={renderIcon !== undefined}>
+        {renderOptionalIcon()}
       </IconWrapper>
       <LabelWrapper>{children}</LabelWrapper>
     </StyledButton>

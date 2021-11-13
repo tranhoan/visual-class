@@ -5,6 +5,7 @@ import { Content as CollapsibleContent } from '../Collapsible';
 import Lottie from 'lottie-react';
 import speakingAnimation from '../../resources/volume.json';
 import handAnimation from '../../resources/hand.json';
+import colors from '../../style/colors';
 
 type Props = {
   participant: UserType;
@@ -58,6 +59,7 @@ const S = {
   Name: styled.div`
     font-size: 1.4rem;
     font-weight: 300;
+    color: ${colors.textBlack};
   `,
   ActionIcons: styled.div`
     display: flex;

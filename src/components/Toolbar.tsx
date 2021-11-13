@@ -51,7 +51,7 @@ const Toolbar: React.FC = () => {
 const S = {
   ToolbarWrapper: styled.div<{ isSidebarHidden: boolean }>`
     --shadow-color: 224deg 58% 88%;
-    box-shadow: ${elevations.large};
+    box-shadow: ${elevations.medium};
     border-radius: 12px;
     background-color: ${colors.additionalWhite};
     left: 50%;
