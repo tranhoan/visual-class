@@ -14,7 +14,12 @@ const PanWrapper: React.FC<Props> = ({ children, zoomLevel }) => {
     setZoom(zoomLevel);
   }, [zoomLevel, setZoom]);
   return (
-    <TransformComponent>
+    <TransformComponent
+      wrapperStyle={{
+        maxWidth: '100%',
+        maxHeight: '100vh',
+      }}
+    >
       <S.Canvas>{children}</S.Canvas>
     </TransformComponent>
   );
@@ -25,6 +30,7 @@ const S = {
     background-image: url(${background});
     background-repeat: repeat;
     background-size: auto;
+    background-position: center;
     height: 1800px;
     width: 3200px;
   `,

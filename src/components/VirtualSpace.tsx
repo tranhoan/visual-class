@@ -7,13 +7,7 @@ const VirtualSpace: React.FC = ({ children }) => {
   const isPanDisabled = usePanStore((state) => state.isPanDisabled);
   return (
     <S.SpaceWrapper>
-      <TransformWrapper
-        initialScale={1}
-        panning={{ disabled: isPanDisabled }}
-        minScale={1}
-        centerZoomedOut={true}
-        centerOnInit={true}
-      >
+      <TransformWrapper panning={{ disabled: isPanDisabled }} minScale={1}>
         {({ state }) => (
           <PanWrapper zoomLevel={state.scale}>{children}</PanWrapper>
         )}
@@ -22,12 +16,6 @@ const VirtualSpace: React.FC = ({ children }) => {
   );
 };
 const S = {
-  Test: styled.div`
-    height: 100px;
-    width: 100px;
-    color: white;
-    background-color: black;
-  `,
   SpaceWrapper: styled.div``,
 };
 export default VirtualSpace;
