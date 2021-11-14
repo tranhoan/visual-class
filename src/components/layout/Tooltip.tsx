@@ -37,6 +37,7 @@ const Tooltip = styled.div<{
   top: ${({ top }) => top || 0}px;
   left: ${({ left }) => left || 0}px;
   background: #282727;
+  position: fixed;
   border-radius: 50px;
   transition: transform 0.1s ease-in-out;
   background: ${colors.primaryBlue};

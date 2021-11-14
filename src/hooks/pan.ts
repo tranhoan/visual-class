@@ -5,6 +5,7 @@ import {
   MouseEvent as SyntheticMouseEvent,
 } from 'react';
 import create from 'zustand';
+import { useParticipantsStore } from './user';
 
 export type Point = {
   x: number;
@@ -23,13 +24,21 @@ export const useZoomStore = create((set) => ({
 
 const origin = { x: 0, y: 0 };
 
-const usePan = (): [Point, (e: SyntheticMouseEvent) => void] => {
+const usePan = (
+  dragId?: number
+): [Point, (e: SyntheticMouseEvent) => void, boolean] => {
   const [panState, setPanState] = useState<Point>(origin);
+  const [isPointerEventDisabled, setIsPointerEventDisabled] =
+    useState<boolean>(false);
   const shift = useRef(origin);
   const setIsPanDisabled = usePanStore((state) => state.setIsPanDisabled);
+  const participantStore = useParticipantsStore();
   const zoom = useZoomStore((state) => state.zoomLevel);
   const pan = useCallback(
     (e: MouseEvent) => {
+      if (dragId != null) {
+        participantStore.participants[dragId].isDragged = true;
+      }
       const currentPosition = { x: e.clientX, y: e.clientY };
       const delta = {
         x: (currentPosition.x - shift.current.x) / zoom,
@@ -44,15 +53,20 @@ const usePan = (): [Point, (e: SyntheticMouseEvent) => void] => {
         return offset;
       });
     },
-    [zoom]
+    [zoom, dragId, participantStore.participants]
   );
   const endPan = useCallback(() => {
     setIsPanDisabled(false);
+    if (dragId != null) {
+      participantStore.participants[dragId].isDragged = false;
+    }
+    setIsPointerEventDisabled(false);
     document.removeEventListener('mousemove', pan);
     document.removeEventListener('mouseup', endPan);
-  }, [pan, setIsPanDisabled]);
+  }, [pan, setIsPanDisabled, participantStore.participants, dragId]);
   const startPan = useCallback(
     (e: SyntheticMouseEvent) => {
+      setIsPointerEventDisabled(true);
       shift.current = { x: e.clientX, y: e.clientY };
       setIsPanDisabled(true);
       document.addEventListener('mousemove', pan);
@@ -60,7 +74,7 @@ const usePan = (): [Point, (e: SyntheticMouseEvent) => void] => {
     },
     [pan, endPan, setIsPanDisabled]
   );
-  return [panState, startPan];
+  return [panState, startPan, isPointerEventDisabled];
 };
 
 export default usePan;

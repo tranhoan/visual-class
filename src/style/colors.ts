@@ -20,5 +20,6 @@ const colors = {
   additionalOrange3: 'var(--addtionalOrange3)',
   darkGreen: 'var(--darkGreen)',
   addtionalBlue: 'var(--additionalBlue)',
+  hoverPrimaryBlue: 'var(--hoverPrimaryBlue)',
 };
 export default colors;

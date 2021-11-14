@@ -25,6 +25,7 @@ const GlobalStyle = createGlobalStyle`
     --errorRedHover: rgba(217, 123, 115, 0.3);
     --middleGrey: #cbcbcb;
     --shadow-color: 0deg 0% 0%;
+    --hoverPrimaryBlue : rgba(2, 51, 115, 0.1);
     --toolbar-xaxis: -50%;
     height: 100%;
     font-size: 62.5%;

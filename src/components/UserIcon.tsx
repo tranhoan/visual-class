@@ -7,13 +7,19 @@ import Video from './Video';
 
 type Props = {
   initials: string;
+  isMe: boolean;
+  isInRoom: boolean;
 };
-const UserIcon: React.FC<Props> = ({ initials }) => {
+const UserIcon: React.FC<Props> = ({ initials, isMe, isInRoom }) => {
   const isWebcamOn = useUserStore((state) => state.isWebcamOn);
   return (
-    <S.UserIconWrapper>
+    <S.UserIconWrapper
+      style={{
+        transform: `scale(${isInRoom ? '0.7' : '1'})`,
+      }}
+    >
       {console.log(isWebcamOn)}
-      {isWebcamOn ? <Video /> : <span>{initials}</span>}
+      {isWebcamOn && isMe ? <Video /> : <span>{initials}</span>}
     </S.UserIconWrapper>
   );
 };
@@ -30,6 +36,7 @@ const S = {
     --shadow-color: 224deg 58% 81%;
     box-shadow: ${elevations.medium};
     font-size: 1.8rem;
+    transition: transform 200ms ease-in;
   `,
 };
 export default UserIcon;
