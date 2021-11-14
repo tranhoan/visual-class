@@ -2,13 +2,8 @@ import styled from 'styled-components';
 import { usePanStore } from '../hooks/pan';
 import { TransformWrapper } from 'react-zoom-pan-pinch';
 import PanWrapper from './PanWrapper';
-import DraggableElement from './DraggableElement';
-import Toolbar from './Toolbar';
-import UserIcon from './UserIcon';
-import Sidebar from './sidebar/Sidebar';
-import ToolTip from './layout/Tooltip';
 
-const VirtualSpace: React.FC = () => {
+const VirtualSpace: React.FC = ({ children }) => {
   const isPanDisabled = usePanStore((state) => state.isPanDisabled);
   return (
     <S.SpaceWrapper>
@@ -20,16 +15,9 @@ const VirtualSpace: React.FC = () => {
         centerOnInit={true}
       >
         {({ state }) => (
-          <PanWrapper zoomLevel={state.scale}>
-            <DraggableElement
-              renderDraggable={() => <UserIcon initials='HT' />}
-            />
-          </PanWrapper>
+          <PanWrapper zoomLevel={state.scale}>{children}</PanWrapper>
         )}
       </TransformWrapper>
-      <Sidebar />
-      <Toolbar />
-      <ToolTip />
     </S.SpaceWrapper>
   );
 };
