@@ -7,6 +7,7 @@ import {
 } from 'react-icons/hi';
 import { FiMonitor, FiVideo } from 'react-icons/fi';
 import { ReactElement } from 'react';
+import { useUserStore } from '../hooks/user';
 
 export type ToolbarData = {
   name: string;
@@ -40,7 +41,7 @@ export const toolbarData: ToolbarDataRecord = {
   shareScreen: {
     name: 'Sdílet obrazovku',
     renderIcon: () => <FiMonitor />,
-    onClick: () => console.log('hoang'),
+    onClick: () => useUserStore.getState().setIsSharingScreen(true),
     type: 'normal',
   },
   leaveRoom: {

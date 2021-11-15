@@ -1,18 +1,24 @@
 import React, { useEffect } from 'react';
+import styled from 'styled-components';
 import DraggableElement from '../components/DraggableElement';
+import SharedContent from '../components/SharedContent';
 import UserIcon from '../components/UserIcon';
 import VirtualRoom from '../components/VirtualRoom';
 import VirtualSpace from '../components/VirtualSpace';
 import { classroomDeskData } from '../data/classroomDesk-data';
 import { participants } from '../data/users-data';
-import { useParticipantsStore } from '../hooks/user';
+import { useParticipantsStore, useUserStore } from '../hooks/user';
 import { useRoomStore } from '../hooks/virtualroom';
+import sharedScreen from '../resources/sharedScreen.png';
 
 const Classroom: React.FC = () => {
   const setUsers = useParticipantsStore((state) => state.setUsers);
   const setRooms = useRoomStore((state) => state.setRooms);
   const classParticipants = useParticipantsStore((state) => state.participants);
   const rooms = useRoomStore((state) => state.rooms);
+  const isSharing = useUserStore((state) => state.isSharingScreen);
+  const setSharing = useUserStore((state) => state.setIsSharingScreen);
+
   useEffect(() => {
     setUsers(Object.values(participants));
   }, [setUsers]);
@@ -48,7 +54,26 @@ const Classroom: React.FC = () => {
           />
         );
       })}
+      {isSharing && (
+        <SharedContent
+          userSource={'HT'}
+          hide={() => setSharing(false)}
+          description={'Vy sdílíte'}
+        >
+          <S.ShareImage alt={'shared screen'} />
+        </SharedContent>
+      )}
     </VirtualSpace>
   );
+};
+
+const S = {
+  ShareImage: styled.img.attrs({
+    src: sharedScreen,
+  })`
+    max-width: 100%;
+    max-height: 100%;
+    object-fit: contain;
+  `,
 };
 export default Classroom;

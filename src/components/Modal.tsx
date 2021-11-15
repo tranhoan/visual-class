@@ -22,9 +22,9 @@ const Modal: React.FC<Props> = ({
     <S.ModalWrapper $isModalHidden={isHidden} className={className}>
       <S.Header>
         <S.PrimaryTitle>{title}</S.PrimaryTitle>
-        <S.IconContainer onClick={() => hide()}>
-          <S.CloseIcon size={20} />
-        </S.IconContainer>
+        <IconContainer onClick={hide}>
+          <CloseIcon size={20} />
+        </IconContainer>
       </S.Header>
       <S.Content>{children}</S.Content>
       <S.Overlay $isRendered={hasOverlay} />
@@ -64,21 +64,23 @@ const S = {
   `,
   Content: styled.div``,
   Overlay: styled.div<{ $isRendered: boolean }>``,
-  CloseIcon: styled(HiX)`
-    color: ${colors.textGrey};
-  `,
-  IconContainer: styled.div`
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    cursor: pointer;
-    width: 3rem;
-    height: 3rem;
-    transition: background-color 200ms ease-in-out;
-    border-radius: 50%;
-    &:hover {
-      background-color: ${colors.backgroundBlue};
-    }
-  `,
 };
+
+export const IconContainer = styled.div`
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  cursor: pointer;
+  width: 3rem;
+  height: 3rem;
+  transition: background-color 200ms ease-in-out;
+  border-radius: 50%;
+  &:hover {
+    background-color: ${colors.backgroundBlue};
+  }
+`;
+
+export const CloseIcon = styled(HiX)`
+  color: ${colors.textGrey};
+`;
 export default Modal;

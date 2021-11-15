@@ -4,7 +4,7 @@ import usePan from '../hooks/pan';
 
 type Props = {
   renderDraggable: () => ReactElement;
-  id: number;
+  id?: number;
 };
 const DraggableElement: React.FC<Props> = ({ renderDraggable, id }) => {
   const [position, startPan, isPointerEventDisabled] = usePan(id);

@@ -7,9 +7,11 @@ type UserDataType = {
   isWebcamOn: boolean;
   isMicOn: boolean;
   sidebarContent: SidebarContent;
+  isSharingScreen: boolean;
   setIsWebcamOn: () => void;
   setIsMicOn: () => void;
   setSidebarContent: (content: SidebarContent) => void;
+  setIsSharingScreen: (isSharing: boolean) => void;
 };
 
 type ParticipantStoreType = {
@@ -20,11 +22,16 @@ type ParticipantStoreType = {
 export const useUserStore = create<UserDataType>((set) => ({
   isWebcamOn: true,
   isMicOn: true,
+  isSharingScreen: false,
   sidebarContent: null,
   setIsWebcamOn: () =>
     set((prevState) => ({ isWebcamOn: !prevState.isWebcamOn })),
   setIsMicOn: () => set((prevState) => ({ isMicOn: !prevState.isMicOn })),
   setSidebarContent: (content) => set({ sidebarContent: content }),
+  setIsSharingScreen: (isSharingScreen) => {
+    set({ isSharingScreen });
+    console.log('hoang');
+  },
 }));
 
 export const useParticipantsStore = create<ParticipantStoreType>((set) => ({

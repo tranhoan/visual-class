@@ -57,6 +57,7 @@ const usePan = (
         y: (currentPosition.y - shift.current.y) / zoom,
       };
       shift.current = { x: e.clientX, y: e.clientY };
+      setIsPointerEventDisabled(true);
       setPanState((prevState) => {
         const offset = {
           x: prevState.x + delta.x,
@@ -78,7 +79,6 @@ const usePan = (
   }, [pan, setIsPanDisabled, participants, dragId]);
   const startPan = useCallback(
     (e: SyntheticMouseEvent) => {
-      setIsPointerEventDisabled(true);
       shift.current = { x: e.clientX, y: e.clientY };
       setIsPanDisabled(true);
       document.addEventListener('mousemove', pan);
