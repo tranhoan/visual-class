@@ -1,5 +1,16 @@
 import { useCallback, useEffect, useState } from 'react';
+import create from 'zustand';
+import { ClassRoomDeskData } from '../data/classroomDesk-data';
 import { useParticipantsStore } from './user';
+
+type RoomStoreData = {
+  rooms: ClassRoomDeskData[];
+  setRooms: (rooms: ClassRoomDeskData[]) => void;
+};
+export const useRoomStore = create<RoomStoreData>((set) => ({
+  rooms: [],
+  setRooms: (rooms) => set({ rooms }),
+}));
 
 export const useDetectRoomEnter = (
   roomId: number
@@ -19,7 +30,7 @@ export const useDetectRoomEnter = (
   }, [participants, roomId]);
   const detectEnter = useCallback(() => {
     participants.forEach((participant) => {
-      if (participant.isDragged) {
+      if (participant.isDragged && participant.room !== roomId) {
         participant.room = roomId;
         setNumberInRoom((prevNumber) => prevNumber + 1);
       }

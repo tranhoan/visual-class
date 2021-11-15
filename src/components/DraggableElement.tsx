@@ -24,7 +24,7 @@ const DraggableElement: React.FC<Props> = ({ renderDraggable, id }) => {
 };
 const S = {
   DraggableWrapper: styled.div`
-    position: relative;
+    position: absolute;
     width: min-content;
     z-index: 2;
     &:hover {

@@ -24,7 +24,7 @@ export const participants: UsersDataRecord = {
     isOnline: true,
     color: colors.additionalOrange2,
     isDragged: false,
-    room: null,
+    room: 1,
   },
   user2: {
     id: 1,
@@ -35,7 +35,7 @@ export const participants: UsersDataRecord = {
     isOnline: true,
     color: colors.addtionalBlue,
     isDragged: false,
-    room: null,
+    room: 1,
   },
   user3: {
     id: 2,
@@ -46,7 +46,7 @@ export const participants: UsersDataRecord = {
     isOnline: true,
     color: colors.additionalOrange,
     isDragged: false,
-    room: null,
+    room: 2,
   },
   user4: {
     id: 3,
@@ -57,7 +57,7 @@ export const participants: UsersDataRecord = {
     isOnline: true,
     color: colors.additionalRed,
     isDragged: false,
-    room: null,
+    room: 2,
   },
   user5: {
     id: 4,
@@ -68,7 +68,7 @@ export const participants: UsersDataRecord = {
     isOnline: true,
     color: colors.secondaryBlue,
     isDragged: false,
-    room: null,
+    room: 3,
   },
   user6: {
     id: 5,

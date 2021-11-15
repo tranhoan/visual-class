@@ -6,13 +6,21 @@ import VirtualSpace from '../components/VirtualSpace';
 import { classroomDeskData } from '../data/classroomDesk-data';
 import { participants } from '../data/users-data';
 import { useParticipantsStore } from '../hooks/user';
+import { useRoomStore } from '../hooks/virtualroom';
 
 const Classroom: React.FC = () => {
   const setUsers = useParticipantsStore((state) => state.setUsers);
+  const setRooms = useRoomStore((state) => state.setRooms);
   const classParticipants = useParticipantsStore((state) => state.participants);
+  const rooms = useRoomStore((state) => state.rooms);
   useEffect(() => {
     setUsers(Object.values(participants));
   }, [setUsers]);
+
+  useEffect(() => {
+    setRooms(Object.values(classroomDeskData));
+  }, [setRooms]);
+
   return (
     <VirtualSpace>
       {classParticipants.map((user) => {
@@ -30,7 +38,7 @@ const Classroom: React.FC = () => {
           />
         );
       })}
-      {Object.values(classroomDeskData).map((desk) => {
+      {rooms.map((desk) => {
         return (
           <VirtualRoom
             key={desk.name}

@@ -4,22 +4,35 @@ import {
   useState,
   MouseEvent as SyntheticMouseEvent,
 } from 'react';
+import { HiClipboardList } from 'react-icons/hi';
 import create from 'zustand';
+import { participants, UserType } from '../data/users-data';
 import { useParticipantsStore } from './user';
+import { useRoomStore } from './virtualroom';
 
 export type Point = {
   x: number;
   y: number;
 };
 
-export const usePanStore = create((set) => ({
+export type PanStoreData = {
+  isPanDisabled: boolean;
+  setIsPanDisabled: (isPanDisabled: boolean) => void;
+};
+
+export type ZoomStoreData = {
+  zoomLevel: number;
+  setZoomLevel: (zoom: number) => void;
+};
+
+export const usePanStore = create<PanStoreData>((set) => ({
   isPanDisabled: false,
-  setIsPanDisabled: (isPanDisabled: boolean) => set({ isPanDisabled }),
+  setIsPanDisabled: (isPanDisabled) => set({ isPanDisabled }),
 }));
 
-export const useZoomStore = create((set) => ({
+export const useZoomStore = create<ZoomStoreData>((set) => ({
   zoomLevel: 1,
-  setZoomLevel: (zoomLevel: number) => set({ zoomLevel: zoomLevel }),
+  setZoomLevel: (zoomLevel) => set({ zoomLevel: zoomLevel }),
 }));
 
 const origin = { x: 0, y: 0 };
@@ -27,17 +40,17 @@ const origin = { x: 0, y: 0 };
 const usePan = (
   dragId?: number
 ): [Point, (e: SyntheticMouseEvent) => void, boolean] => {
-  const [panState, setPanState] = useState<Point>(origin);
   const [isPointerEventDisabled, setIsPointerEventDisabled] =
     useState<boolean>(false);
+  const participants = useParticipantsStore((state) => state.participants);
   const shift = useRef(origin);
+  const [panState, setPanState] = useState<Point>(origin);
   const setIsPanDisabled = usePanStore((state) => state.setIsPanDisabled);
-  const participantStore = useParticipantsStore();
   const zoom = useZoomStore((state) => state.zoomLevel);
   const pan = useCallback(
     (e: MouseEvent) => {
       if (dragId != null) {
-        participantStore.participants[dragId].isDragged = true;
+        participants[dragId].isDragged = true;
       }
       const currentPosition = { x: e.clientX, y: e.clientY };
       const delta = {
@@ -53,17 +66,17 @@ const usePan = (
         return offset;
       });
     },
-    [zoom, dragId, participantStore.participants]
+    [zoom, dragId, participants]
   );
   const endPan = useCallback(() => {
     setIsPanDisabled(false);
     if (dragId != null) {
-      participantStore.participants[dragId].isDragged = false;
+      participants[dragId].isDragged = false;
     }
     setIsPointerEventDisabled(false);
     document.removeEventListener('mousemove', pan);
     document.removeEventListener('mouseup', endPan);
-  }, [pan, setIsPanDisabled, participantStore.participants, dragId]);
+  }, [pan, setIsPanDisabled, participants, dragId]);
   const startPan = useCallback(
     (e: SyntheticMouseEvent) => {
       setIsPointerEventDisabled(true);
@@ -78,3 +91,22 @@ const usePan = (
 };
 
 export default usePan;
+
+const useSetInitialPosition = (
+  participants: UserType[],
+  dragId: number | undefined
+) => {
+  const rooms = useRoomStore((state) => state.rooms);
+  if (dragId == null) {
+    return origin;
+  }
+  const roomId = participants[dragId].room;
+  const position = roomId === null ? origin : rooms[roomId].position;
+  if (position !== origin) {
+    position.x = Math.random() * (position.x + 243 - position.x) + position.x;
+    position.y = Math.random() * (position.y + 200 - position.y) + position.y;
+    console.log(position.x, position.y);
+  }
+  console.log('tran');
+  return position;
+};

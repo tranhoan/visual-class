@@ -39,6 +39,7 @@ const S = {
     background: rgba(255, 255, 255, 0.64) no-repeat padding-box;
     backdrop-filter: blur(2px);
     padding: 1.6rem 1.6rem;
+    position: absolute;
 
     &:hover {
       background-color: ${colors.hoverPrimaryBlue};

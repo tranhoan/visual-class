@@ -7,7 +7,13 @@ const VirtualSpace: React.FC = ({ children }) => {
   const isPanDisabled = usePanStore((state) => state.isPanDisabled);
   return (
     <S.SpaceWrapper>
-      <TransformWrapper panning={{ disabled: isPanDisabled }} minScale={1}>
+      <TransformWrapper
+        panning={{ disabled: isPanDisabled }}
+        minScale={0.5}
+        initialPositionX={-1100}
+        initialPositionY={-300}
+        wheel={{ step: 0.1 }}
+      >
         {({ state }) => (
           <PanWrapper zoomLevel={state.scale}>{children}</PanWrapper>
         )}
