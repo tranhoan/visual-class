@@ -26,7 +26,7 @@ export const participants: UsersDataRecord = {
     isOnline: true,
     color: colors.additionalOrange2,
     isDragged: false,
-    room: 1,
+    room: 0,
     roomPosition: { x: 1630, y: 600 },
   },
   user2: {
@@ -38,7 +38,7 @@ export const participants: UsersDataRecord = {
     isOnline: true,
     color: colors.addtionalBlue,
     isDragged: false,
-    room: 1,
+    room: 0,
     roomPosition: { x: 1700, y: 650 },
   },
   user3: {
@@ -50,7 +50,7 @@ export const participants: UsersDataRecord = {
     isOnline: true,
     color: colors.additionalOrange,
     isDragged: false,
-    room: 2,
+    room: 1,
     roomPosition: { x: 2050, y: 600 },
   },
   user4: {
@@ -62,7 +62,7 @@ export const participants: UsersDataRecord = {
     isOnline: true,
     color: colors.additionalRed,
     isDragged: false,
-    room: 2,
+    room: 1,
     roomPosition: { x: 2090, y: 650 },
   },
   user5: {
@@ -110,7 +110,7 @@ export const participants: UsersDataRecord = {
     isOnline: false,
     color: colors.darkGreen,
     isDragged: false,
-    room: 2,
+    room: 6,
     roomPosition: { x: 2296, y: 950 },
   },
   user9: {
