@@ -3,6 +3,7 @@ import styled from 'styled-components';
 import { Point } from '../hooks/pan';
 import { useDetectRoomEnter } from '../hooks/virtualroom';
 import colors from '../style/colors';
+import { HiUsers } from 'react-icons/hi';
 
 type Props = {
   roomName: string;
@@ -11,7 +12,7 @@ type Props = {
 };
 
 const VirtualRoom: React.FC<Props> = ({ roomName, position, id }) => {
-  const [detectEnter, detectLeave] = useDetectRoomEnter(id);
+  const [detectEnter, detectLeave, peopleInRoom] = useDetectRoomEnter(id);
   return (
     <S.RoomWrapper
       onMouseUp={detectEnter}
@@ -20,7 +21,13 @@ const VirtualRoom: React.FC<Props> = ({ roomName, position, id }) => {
         transform: `translate(${position.x}px,${position.y}px)`,
       }}
     >
-      <S.RoomHeader>{roomName}</S.RoomHeader>
+      <S.RoomHeader>
+        {roomName}
+        <S.UsersWrapper>
+          <S.UsersIcon size={16} />
+          {peopleInRoom}
+        </S.UsersWrapper>
+      </S.RoomHeader>
     </S.RoomWrapper>
   );
 };
@@ -40,8 +47,18 @@ const S = {
   `,
   RoomHeader: styled.div`
     color: ${colors.textBlack};
-    font-size: 1.2rem;
+    font-size: 1.3rem;
     font-weight: 400;
+    display: flex;
+    align-items: center;
+  `,
+  UsersWrapper: styled.div`
+    margin-left: 1.6rem;
+    display: flex;
+    align-items: center;
+  `,
+  UsersIcon: styled(HiUsers)`
+    margin-right: 0.8rem;
   `,
 };
 export default VirtualRoom;

@@ -82,6 +82,10 @@ const ToolbarItemButton = styled.button`
     color: ${colors.primaryBlue};
     cursor: pointer;
   }
+  &:focus,
+  &:active {
+    outline: none;
+  }
 `;
 export const ActiveItemButton = styled(ToolbarItemButton)<{
   isActive: boolean;
