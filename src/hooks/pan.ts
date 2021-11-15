@@ -4,11 +4,8 @@ import {
   useState,
   MouseEvent as SyntheticMouseEvent,
 } from 'react';
-import { HiClipboardList } from 'react-icons/hi';
 import create from 'zustand';
-import { participants, UserType } from '../data/users-data';
 import { useParticipantsStore } from './user';
-import { useRoomStore } from './virtualroom';
 
 export type Point = {
   x: number;
@@ -44,7 +41,9 @@ const usePan = (
     useState<boolean>(false);
   const participants = useParticipantsStore((state) => state.participants);
   const shift = useRef(origin);
-  const [panState, setPanState] = useState<Point>(origin);
+  const initialPosition =
+    dragId == null ? origin : participants[dragId].roomPosition;
+  const [panState, setPanState] = useState<Point>(initialPosition);
   const setIsPanDisabled = usePanStore((state) => state.setIsPanDisabled);
   const zoom = useZoomStore((state) => state.zoomLevel);
   const pan = useCallback(
@@ -91,22 +90,3 @@ const usePan = (
 };
 
 export default usePan;
-
-const useSetInitialPosition = (
-  participants: UserType[],
-  dragId: number | undefined
-) => {
-  const rooms = useRoomStore((state) => state.rooms);
-  if (dragId == null) {
-    return origin;
-  }
-  const roomId = participants[dragId].room;
-  const position = roomId === null ? origin : rooms[roomId].position;
-  if (position !== origin) {
-    position.x = Math.random() * (position.x + 243 - position.x) + position.x;
-    position.y = Math.random() * (position.y + 200 - position.y) + position.y;
-    console.log(position.x, position.y);
-  }
-  console.log('tran');
-  return position;
-};

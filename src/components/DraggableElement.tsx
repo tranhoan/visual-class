@@ -18,7 +18,6 @@ const DraggableElement: React.FC<Props> = ({ renderDraggable, id }) => {
       }}
     >
       {renderDraggable()}
-      {id}
     </S.DraggableWrapper>
   );
 };

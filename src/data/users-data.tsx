@@ -1,3 +1,4 @@
+import { Point } from '../hooks/pan';
 import colors from '../style/colors';
 
 export interface UsersDataRecord {
@@ -13,6 +14,7 @@ export type UserType = {
   color: string;
   isDragged: boolean;
   room: number | null;
+  roomPosition: Point;
 };
 export const participants: UsersDataRecord = {
   user1: {
@@ -25,6 +27,7 @@ export const participants: UsersDataRecord = {
     color: colors.additionalOrange2,
     isDragged: false,
     room: 1,
+    roomPosition: { x: 1630, y: 600 },
   },
   user2: {
     id: 1,
@@ -36,6 +39,7 @@ export const participants: UsersDataRecord = {
     color: colors.addtionalBlue,
     isDragged: false,
     room: 1,
+    roomPosition: { x: 1700, y: 650 },
   },
   user3: {
     id: 2,
@@ -47,6 +51,7 @@ export const participants: UsersDataRecord = {
     color: colors.additionalOrange,
     isDragged: false,
     room: 2,
+    roomPosition: { x: 2050, y: 600 },
   },
   user4: {
     id: 3,
@@ -58,6 +63,7 @@ export const participants: UsersDataRecord = {
     color: colors.additionalRed,
     isDragged: false,
     room: 2,
+    roomPosition: { x: 2090, y: 650 },
   },
   user5: {
     id: 4,
@@ -69,6 +75,7 @@ export const participants: UsersDataRecord = {
     color: colors.secondaryBlue,
     isDragged: false,
     room: 3,
+    roomPosition: { x: 2729, y: 650 },
   },
   user6: {
     id: 5,
@@ -79,7 +86,8 @@ export const participants: UsersDataRecord = {
     isOnline: true,
     color: colors.successGreen,
     isDragged: false,
-    room: null,
+    room: 3,
+    roomPosition: { x: 2669, y: 650 },
   },
   user7: {
     id: 6,
@@ -90,7 +98,8 @@ export const participants: UsersDataRecord = {
     isOnline: false,
     color: colors.textGrey,
     isDragged: false,
-    room: null,
+    room: 2,
+    roomPosition: { x: 2276, y: 650 },
   },
   user8: {
     id: 7,
@@ -101,7 +110,8 @@ export const participants: UsersDataRecord = {
     isOnline: false,
     color: colors.darkGreen,
     isDragged: false,
-    room: null,
+    room: 2,
+    roomPosition: { x: 2296, y: 950 },
   },
   user9: {
     id: 8,
@@ -113,5 +123,6 @@ export const participants: UsersDataRecord = {
     color: colors.additionalOrange2,
     isDragged: false,
     room: null,
+    roomPosition: { x: 2296, y: 350 },
   },
 };
