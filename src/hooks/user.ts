@@ -28,10 +28,7 @@ export const useUserStore = create<UserDataType>((set) => ({
     set((prevState) => ({ isWebcamOn: !prevState.isWebcamOn })),
   setIsMicOn: () => set((prevState) => ({ isMicOn: !prevState.isMicOn })),
   setSidebarContent: (content) => set({ sidebarContent: content }),
-  setIsSharingScreen: (isSharingScreen) => {
-    set({ isSharingScreen });
-    console.log('hoang');
-  },
+  setIsSharingScreen: (isSharingScreen) => set({ isSharingScreen }),
 }));
 
 export const useParticipantsStore = create<ParticipantStoreType>((set) => ({

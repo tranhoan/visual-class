@@ -18,7 +18,6 @@ const UserIcon: React.FC<Props> = ({ initials, isMe, isInRoom }) => {
         transform: `scale(${isInRoom ? '0.7' : '1'})`,
       }}
     >
-      {console.log(isWebcamOn)}
       {isWebcamOn && isMe ? <Video /> : <span>{initials}</span>}
     </S.UserIconWrapper>
   );

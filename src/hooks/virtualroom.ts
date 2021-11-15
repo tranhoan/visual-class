@@ -19,14 +19,11 @@ export const useDetectRoomEnter = (
   const [numberInRoom, setNumberInRoom] = useState(0);
   useEffect(() => {
     let people = 0;
-    console.log(`roomid:${roomId}`);
-    console.log(participants);
     participants.forEach((p) => {
       if (p.room === roomId) {
         people++;
       }
     });
-    console.log(`people: ${people}`);
     setNumberInRoom(people);
   }, [participants, roomId]);
   const detectEnter = useCallback(() => {
