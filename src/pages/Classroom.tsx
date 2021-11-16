@@ -35,13 +35,7 @@ const Classroom: React.FC = () => {
             <DraggableElement
               id={user.id}
               key={user.id}
-              renderDraggable={() => (
-                <UserIcon
-                  isMe={user.id === 8}
-                  initials={user.initials}
-                  isInRoom={user.room !== null}
-                />
-              )}
+              renderDraggable={() => <UserIcon id={user.id} />}
             />
           );
         })}

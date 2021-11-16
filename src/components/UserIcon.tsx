@@ -1,24 +1,32 @@
 import React from 'react';
 import styled from 'styled-components';
-import { useUserStore } from '../hooks/user';
+import { useParticipantsStore, useUserStore } from '../hooks/user';
 import colors from '../style/colors';
 import elevations from '../style/elevations';
 import Video from './Video';
 
 type Props = {
-  initials: string;
-  isMe: boolean;
-  isInRoom: boolean;
+  id: number;
 };
-const UserIcon: React.FC<Props> = ({ initials, isMe, isInRoom }) => {
+const UserIcon: React.FC<Props> = ({ id }) => {
   const isWebcamOn = useUserStore((state) => state.isWebcamOn);
+  const users = useParticipantsStore((state) => state.participants);
+  const currentUser = users[id];
   return (
     <S.UserIconWrapper
       style={{
-        transform: `scale(${isInRoom ? '0.7' : '1'})`,
+        transform: `scale(${currentUser.room !== null ? '0.7' : '1'})`,
       }}
     >
-      {isWebcamOn && isMe ? <Video /> : <span>{initials}</span>}
+      {isWebcamOn && id === 8 ? (
+        <Video />
+      ) : currentUser.isWebcamTurnedOn ? (
+        <S.UserWebcam autoPlay loop>
+          <source src={currentUser.video} />
+        </S.UserWebcam>
+      ) : (
+        <span>{currentUser.initials}</span>
+      )}
     </S.UserIconWrapper>
   );
 };
@@ -36,6 +44,13 @@ const S = {
     box-shadow: ${elevations.medium};
     font-size: 1.8rem;
     transition: transform 200ms ease-in;
+  `,
+  UserWebcam: styled.video`
+    object-fit: cover;
+    overflow: hidden;
+    width: 100%;
+    height: 100%;
+    border-radius: 50%;
   `,
 };
 export default UserIcon;
