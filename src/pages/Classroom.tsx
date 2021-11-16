@@ -1,4 +1,4 @@
-import React, { useEffect } from 'react';
+import React, { Fragment, useEffect } from 'react';
 import styled from 'styled-components';
 import DraggableElement from '../components/DraggableElement';
 import SharedContent from '../components/SharedContent';
@@ -28,42 +28,44 @@ const Classroom: React.FC = () => {
   }, [setRooms]);
 
   return (
-    <VirtualSpace>
-      {classParticipants.map((user) => {
-        return (
-          <DraggableElement
-            id={user.id}
-            key={user.id}
-            renderDraggable={() => (
-              <UserIcon
-                isMe={user.id === 8}
-                initials={user.initials}
-                isInRoom={user.room !== null}
-              />
-            )}
-          />
-        );
-      })}
-      {rooms.map((desk) => {
-        return (
-          <VirtualRoom
-            key={desk.name}
-            position={desk.position}
-            roomName={desk.name}
-            id={desk.id}
-          />
-        );
-      })}
-      {isSharing && (
-        <SharedContent
-          userSource={'HT'}
-          hide={() => setSharing(false)}
-          description={'Vy sdílíte'}
-        >
-          <S.ShareImage alt={'shared screen'} />
-        </SharedContent>
-      )}
-    </VirtualSpace>
+    <Fragment>
+      <VirtualSpace>
+        {classParticipants.map((user) => {
+          return (
+            <DraggableElement
+              id={user.id}
+              key={user.id}
+              renderDraggable={() => (
+                <UserIcon
+                  isMe={user.id === 8}
+                  initials={user.initials}
+                  isInRoom={user.room !== null}
+                />
+              )}
+            />
+          );
+        })}
+        {rooms.map((desk) => {
+          return (
+            <VirtualRoom
+              key={desk.name}
+              position={desk.position}
+              roomName={desk.name}
+              id={desk.id}
+            />
+          );
+        })}
+        {isSharing && (
+          <SharedContent
+            userSource={'HT'}
+            hide={() => setSharing(false)}
+            description={'Vy sdílíte'}
+          >
+            <S.ShareImage alt={'shared screen'} />
+          </SharedContent>
+        )}
+      </VirtualSpace>
+    </Fragment>
   );
 };
 

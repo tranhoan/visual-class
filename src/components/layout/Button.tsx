@@ -6,7 +6,7 @@ import elevations from '../../style/elevations';
 
 type Props = {
   renderIcon?: () => ReactElement;
-  onClick: () => void;
+  onClick?: () => void;
   className?: string;
 };
 const Button: React.FC<Props> = ({
@@ -59,6 +59,9 @@ const StyledButton = styled(BareButton)`
 `;
 const IconWrapper = styled.div<{ $isRendered: boolean }>`
   margin-right: 1.6rem;
+  .floating-button & {
+    margin-right: 0;
+  }
   display: ${(props) => (props.$isRendered ? 'flex' : 'none')};
   justify-content: center;
   align-items: center;

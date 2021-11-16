@@ -21,7 +21,7 @@ const Modal: React.FC<Props> = ({
   return (
     <S.ModalWrapper $isModalHidden={isHidden} className={className}>
       <S.Header>
-        <S.PrimaryTitle>{title}</S.PrimaryTitle>
+        <PrimaryTitle>{title}</PrimaryTitle>
         <IconContainer onClick={hide}>
           <CloseIcon size={20} />
         </IconContainer>
@@ -51,12 +51,6 @@ const S = {
       transition: transform 200ms ease-in-out;
     }
   `,
-  PrimaryTitle: styled.h1`
-    font-size: 1.8rem;
-    padding: 0;
-    font-weight: 400;
-    color: ${colors.textBlack};
-  `,
   Header: styled.div`
     display: flex;
     justify-content: space-between;
@@ -82,5 +76,12 @@ export const IconContainer = styled.div`
 
 export const CloseIcon = styled(HiX)`
   color: ${colors.textGrey};
+`;
+
+export const PrimaryTitle = styled.h1`
+  font-size: 1.8rem;
+  padding: 0;
+  font-weight: 400;
+  color: ${colors.textBlack};
 `;
 export default Modal;

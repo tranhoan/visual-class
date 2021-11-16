@@ -4,6 +4,7 @@ import ToolTip from './components/layout/Tooltip';
 import Sidebar from './components/sidebar/Sidebar';
 import Toolbar from './components/Toolbar';
 import Classroom from './pages/Classroom';
+import MaxedScreenShare from './pages/MaxedScreenShare';
 import School from './pages/School';
 
 function App() {
@@ -12,7 +13,7 @@ function App() {
       <Routes>
         <Route path='/classroom' element={<Classroom />} />
         <Route path='/school' element={<School />} />
-        <Route path='*' element={<Classroom />} />
+        <Route path='/maxScreen' element={<MaxedScreenShare />} />
       </Routes>
       <Sidebar />
       <Toolbar />

@@ -5,12 +5,17 @@ import usePan from '../hooks/pan';
 type Props = {
   renderDraggable: () => ReactElement;
   id?: number;
+  className?: string;
+  isResized?: boolean;
 };
-const DraggableElement: React.FC<Props> = ({ renderDraggable, id }) => {
+const DraggableElement: React.FC<Props> = ({
+  renderDraggable,
+  id,
+  isResized,
+}) => {
   const [position, startPan, isPointerEventDisabled] = usePan(id);
   return (
     <S.DraggableWrapper
-      draggable={true}
       onMouseDown={(e) => startPan(e)}
       style={{
         transform: `translate(${position.x}px,${position.y}px)`,
@@ -24,7 +29,7 @@ const DraggableElement: React.FC<Props> = ({ renderDraggable, id }) => {
 const S = {
   DraggableWrapper: styled.div`
     position: absolute;
-    width: min-content;
+    width: auto;
     z-index: 2;
     &:hover {
       cursor: pointer;

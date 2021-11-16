@@ -1,4 +1,5 @@
 import { createGlobalStyle } from 'styled-components';
+import colors from './colors';
 
 const GlobalStyle = createGlobalStyle`
 :root {
@@ -36,6 +37,7 @@ const GlobalStyle = createGlobalStyle`
         margin: 0;
         -webkit-font-smoothing: antialiased;
         -moz-osx-font-smoothing: grayscale;
+        background-color: ${colors.backgroundBlue};
 
     }
     body, button {
