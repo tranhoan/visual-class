@@ -1,5 +1,6 @@
-import React from 'react';
+import React, { useRef } from 'react';
 import styled from 'styled-components';
+import { useTooltip } from '../hooks/tooltip';
 import { useParticipantsStore, useUserStore } from '../hooks/user';
 import colors from '../style/colors';
 import elevations from '../style/elevations';
@@ -12,8 +13,15 @@ const UserIcon: React.FC<Props> = ({ id }) => {
   const isWebcamOn = useUserStore((state) => state.isWebcamOn);
   const users = useParticipantsStore((state) => state.participants);
   const currentUser = users[id];
+  const { onMouseEnter, onMouseLeave } = useTooltip<HTMLDivElement>();
+  const iconRef = useRef(null);
   return (
     <S.UserIconWrapper
+      ref={iconRef}
+      onMouseEnter={() =>
+        onMouseEnter(iconRef.current, 'bottom', currentUser.name)
+      }
+      onMouseLeave={() => onMouseLeave()}
       style={{
         transform: `scale(${currentUser.room !== null ? '0.7' : '1'})`,
       }}

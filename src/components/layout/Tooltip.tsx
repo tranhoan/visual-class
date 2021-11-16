@@ -97,7 +97,7 @@ const rightCss = css`
 `;
 
 const bottomCss = css`
-  --tx: 0;
+  --tx: -30%;
   --ty: 8px;
 `;
 
