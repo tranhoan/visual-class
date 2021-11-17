@@ -25,12 +25,12 @@ const MaxedScreenShare: React.FC = () => {
       <S.Body>
         <S.SharedImage></S.SharedImage>
         <S.Viewers>
-          <S.UserIcon autoPlay loop>
+          <FloatingUserIcon autoPlay loop>
             <source src={videoStudent1} />
-          </S.UserIcon>
-          <S.UserIcon autoPlay loop>
+          </FloatingUserIcon>
+          <FloatingUserIcon autoPlay loop>
             <source src={videoStudent2} />
-          </S.UserIcon>
+          </FloatingUserIcon>
         </S.Viewers>
       </S.Body>
     </S.MaxedContent>
@@ -72,12 +72,13 @@ const S = {
     flex-direction: column;
     margin-left: 8.8rem;
   `,
-  UserIcon: styled(UserWebcam)`
-    width: 11rem;
-    height: 11rem;
-    margin-bottom: 2.4rem;
-    --shadow-color: 0deg 0% 40%;
-    box-shadow: ${elevations.medium};
-  `,
 };
+
+export const FloatingUserIcon = styled(UserWebcam)`
+  width: 11rem;
+  height: 11rem;
+  margin-bottom: 2.4rem;
+  --shadow-color: 0deg 0% 40%;
+  box-shadow: ${elevations.medium};
+`;
 export default MaxedScreenShare;

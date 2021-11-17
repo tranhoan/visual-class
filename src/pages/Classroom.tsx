@@ -1,4 +1,4 @@
-import React, { Fragment, useEffect } from 'react';
+import React, { Fragment, useEffect, useState } from 'react';
 import styled from 'styled-components';
 import DraggableElement from '../components/DraggableElement';
 import SharedContent from '../components/SharedContent';
@@ -7,20 +7,42 @@ import Video from '../components/Video';
 import VirtualRoom from '../components/VirtualRoom';
 import VirtualSpace from '../components/VirtualSpace';
 import { classroomDeskData } from '../data/classroomDesk-data';
-import { participants } from '../data/users-data';
+import { participants, UserType } from '../data/users-data';
 import { useParticipantsStore, useUserStore } from '../hooks/user';
 import { useRoomStore } from '../hooks/virtualroom';
 import sharedScreen from '../resources/sharedScreen.png';
+import colors from '../style/colors';
 import elevations from '../style/elevations';
+import { FloatingUserIcon } from './MaxedScreenShare';
 
+const getUsersInRoom = (
+  id: number,
+  participants: UserType[]
+): Array<UserType> => {
+  const usersInRoom: Array<UserType> = [];
+  const myRoom = participants[id].room;
+  participants.forEach((user) => {
+    if (user.id !== id && user.room === myRoom) {
+      usersInRoom.push(user);
+    }
+  });
+  return usersInRoom;
+};
 const Classroom: React.FC = () => {
-  const setUsers = useParticipantsStore((state) => state.setUsers);
-  const setRooms = useRoomStore((state) => state.setRooms);
-  const classParticipants = useParticipantsStore((state) => state.participants);
-  const rooms = useRoomStore((state) => state.rooms);
-  const isSharing = useUserStore((state) => state.isSharingScreen);
-  const setSharing = useUserStore((state) => state.setIsSharingScreen);
-  const isWebcamOn = useUserStore((state) => state.isWebcamOn);
+  const [usersInRoom, setUsersInRoom] = useState<UserType[]>([]);
+  const [classParticipants, setUsers] = useParticipantsStore((state) => [
+    state.participants,
+    state.setUsers,
+  ]);
+  const [rooms, setRooms] = useRoomStore((state) => [
+    state.rooms,
+    state.setRooms,
+  ]);
+  const [setSharing, isSharing, isWebcamOn] = useUserStore((state) => [
+    state.setIsSharingScreen,
+    state.isSharingScreen,
+    state.isWebcamOn,
+  ]);
 
   useEffect(() => {
     setUsers(Object.values(participants));
@@ -29,6 +51,14 @@ const Classroom: React.FC = () => {
   useEffect(() => {
     setRooms(Object.values(classroomDeskData));
   }, [setRooms]);
+
+  useEffect(() => {
+    if (classParticipants.length === 0) {
+      return;
+    }
+    const inRoom = getUsersInRoom(8, classParticipants);
+    setUsersInRoom(inRoom);
+  }, [classParticipants]);
 
   return (
     <Fragment>
@@ -62,9 +92,18 @@ const Classroom: React.FC = () => {
           </SharedContent>
         )}
       </VirtualSpace>
-      <S.SpotlightWrapper $isWebcamOn={isWebcamOn}>
-        <S.SpotlightCamera />
-      </S.SpotlightWrapper>
+      <S.Cameras>
+        <S.SpotlightWrapper $isWebcamOn={isWebcamOn}>
+          <S.SpotlightCamera />
+        </S.SpotlightWrapper>
+        {usersInRoom.map((user) => {
+          return (
+            <FloatingUserIcon autoPlay loop key={`spotlightcamera${user.id}`}>
+              <source src={user.video} />
+            </FloatingUserIcon>
+          );
+        })}
+      </S.Cameras>
     </Fragment>
   );
 };
@@ -85,7 +124,6 @@ const S = {
   SpotlightWrapper: styled.div<{ $isWebcamOn: boolean }>`
     width: 31.7rem;
     height: 18.8rem;
-    position: fixed;
     top: 8.8rem;
     right: 7.2rem;
     border-radius: 4px;
@@ -95,6 +133,21 @@ const S = {
     transition: all 200ms ease-in-out;
     --shadow-color: 224deg 58% 88%;
     box-shadow: ${elevations.medium};
+    border: 1px solid ${colors.textGrey};
+    margin-bottom: 3.6rem;
+  `,
+  Cameras: styled.div`
+    position: fixed;
+    top: 8.8rem;
+    right: 7.2rem;
+    display: flex;
+    flex-direction: column;
+    align-items: flex-end;
+  `,
+
+  ClassFloatingCamera: styled(FloatingUserIcon)`
+    margin-bottom: 0;
+    margin-top: 2.4rem;
   `,
 };
 export default Classroom;

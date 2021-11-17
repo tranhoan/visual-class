@@ -15,7 +15,10 @@ export const useRoomStore = create<RoomStoreData>((set) => ({
 export const useDetectRoomEnter = (
   roomId: number
 ): [detectEnter: () => void, detectLeave: () => void, peopleInRoom: number] => {
-  const participants = useParticipantsStore((state) => state.participants);
+  const [participants, setParticipants] = useParticipantsStore((state) => [
+    state.participants,
+    state.setUsers,
+  ]);
   const [numberInRoom, setNumberInRoom] = useState(0);
   useEffect(() => {
     let people = 0;
@@ -29,18 +32,22 @@ export const useDetectRoomEnter = (
   const detectEnter = useCallback(() => {
     participants.forEach((participant) => {
       if (participant.isDragged && participant.room !== roomId) {
-        participant.room = roomId;
+        const newParticipants = [...participants];
+        newParticipants[participant.id].room = roomId;
+        setParticipants(newParticipants);
         setNumberInRoom((prevNumber) => prevNumber + 1);
       }
     });
-  }, [participants, roomId]);
+  }, [participants, roomId, setParticipants]);
   const detectLeave = useCallback(() => {
     participants.forEach((participant) => {
       if (participant.isDragged && participant.room === roomId) {
-        participant.room = null;
+        const newParticipants = [...participants];
+        newParticipants[participant.id].room = null;
+        setParticipants(newParticipants);
         setNumberInRoom((prevNumber) => prevNumber - 1);
       }
     });
-  }, [participants, roomId]);
+  }, [participants, roomId, setParticipants]);
   return [detectEnter, detectLeave, numberInRoom];
 };
