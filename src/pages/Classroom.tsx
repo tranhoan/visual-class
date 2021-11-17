@@ -21,6 +21,9 @@ const getUsersInRoom = (
 ): Array<UserType> => {
   const usersInRoom: Array<UserType> = [];
   const myRoom = participants[id].room;
+  if (myRoom === null) {
+    return usersInRoom;
+  }
   participants.forEach((user) => {
     if (user.id !== id && user.room === myRoom) {
       usersInRoom.push(user);
