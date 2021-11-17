@@ -2,10 +2,13 @@ import React, { useRef } from 'react';
 import styled from 'styled-components';
 import { useStreamWebcam } from '../hooks/user';
 
-const Video: React.FC = () => {
+type Props = {
+  className?: string;
+};
+const Video: React.FC<Props> = ({ className }) => {
   const videoRef = useRef(null);
   useStreamWebcam(videoRef);
-  return <S.Video ref={videoRef}></S.Video>;
+  return <S.Video className={className} ref={videoRef}></S.Video>;
 };
 const S = {
   Video: styled.video`

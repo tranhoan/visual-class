@@ -28,10 +28,10 @@ const UserIcon: React.FC<Props> = ({ id }) => {
     >
       {isWebcamOn && id === 8 ? (
         <Video />
-      ) : currentUser.isWebcamTurnedOn ? (
-        <S.UserWebcam autoPlay loop>
+      ) : currentUser.isWebcamTurnedOn && id !== 8 ? (
+        <UserWebcam autoPlay loop>
           <source src={currentUser.video} />
-        </S.UserWebcam>
+        </UserWebcam>
       ) : (
         <span>{currentUser.initials}</span>
       )}
@@ -53,12 +53,12 @@ const S = {
     font-size: 1.8rem;
     transition: transform 200ms ease-in;
   `,
-  UserWebcam: styled.video`
-    object-fit: cover;
-    overflow: hidden;
-    width: 100%;
-    height: 100%;
-    border-radius: 50%;
-  `,
 };
+export const UserWebcam = styled.video`
+  object-fit: cover;
+  overflow: hidden;
+  width: 100%;
+  height: 100%;
+  border-radius: 50%;
+`;
 export default UserIcon;

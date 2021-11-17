@@ -8,6 +8,7 @@ import { PrimaryTitle } from '../components/Modal';
 import videoStudent1 from '../resources/videoStudent1.mp4';
 import videoStudent2 from '../resources/videStudent2.mp4';
 import elevations from '../style/elevations';
+import { UserWebcam } from '../components/UserIcon';
 
 const MaxedScreenShare: React.FC = () => {
   return (
@@ -71,14 +72,10 @@ const S = {
     flex-direction: column;
     margin-left: 8.8rem;
   `,
-  UserIcon: styled.video`
+  UserIcon: styled(UserWebcam)`
     width: 11rem;
     height: 11rem;
-    background-color: blue;
-    border-radius: 50%;
     margin-bottom: 2.4rem;
-    object-fit: cover;
-    overflow: hidden;
     --shadow-color: 0deg 0% 40%;
     box-shadow: ${elevations.medium};
   `,

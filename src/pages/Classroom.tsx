@@ -3,6 +3,7 @@ import styled from 'styled-components';
 import DraggableElement from '../components/DraggableElement';
 import SharedContent from '../components/SharedContent';
 import UserIcon from '../components/UserIcon';
+import Video from '../components/Video';
 import VirtualRoom from '../components/VirtualRoom';
 import VirtualSpace from '../components/VirtualSpace';
 import { classroomDeskData } from '../data/classroomDesk-data';
@@ -10,6 +11,7 @@ import { participants } from '../data/users-data';
 import { useParticipantsStore, useUserStore } from '../hooks/user';
 import { useRoomStore } from '../hooks/virtualroom';
 import sharedScreen from '../resources/sharedScreen.png';
+import elevations from '../style/elevations';
 
 const Classroom: React.FC = () => {
   const setUsers = useParticipantsStore((state) => state.setUsers);
@@ -18,6 +20,7 @@ const Classroom: React.FC = () => {
   const rooms = useRoomStore((state) => state.rooms);
   const isSharing = useUserStore((state) => state.isSharingScreen);
   const setSharing = useUserStore((state) => state.setIsSharingScreen);
+  const isWebcamOn = useUserStore((state) => state.isWebcamOn);
 
   useEffect(() => {
     setUsers(Object.values(participants));
@@ -59,6 +62,9 @@ const Classroom: React.FC = () => {
           </SharedContent>
         )}
       </VirtualSpace>
+      <S.SpotlightWrapper $isWebcamOn={isWebcamOn}>
+        <S.SpotlightCamera />
+      </S.SpotlightWrapper>
     </Fragment>
   );
 };
@@ -70,6 +76,25 @@ const S = {
     max-width: 100%;
     max-height: 100%;
     object-fit: contain;
+  `,
+  SpotlightCamera: styled(Video)`
+    width: 3rem;
+    height: 8rem;
+    border-radius: 4px;
+  `,
+  SpotlightWrapper: styled.div<{ $isWebcamOn: boolean }>`
+    width: 31.7rem;
+    height: 18.8rem;
+    position: fixed;
+    top: 8.8rem;
+    right: 7.2rem;
+    border-radius: 4px;
+    opacity: ${(props) => (props.$isWebcamOn ? '1' : '0')};
+    visibility: ${(props) => (props.$isWebcamOn ? 'visible' : 'hidden')};
+    transform: scale(${(props) => (props.$isWebcamOn ? '1' : '0')});
+    transition: all 200ms ease-in-out;
+    --shadow-color: 224deg 58% 88%;
+    box-shadow: ${elevations.medium};
   `,
 };
 export default Classroom;
