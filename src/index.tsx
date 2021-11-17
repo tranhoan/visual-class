@@ -1,7 +1,7 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
 import { BrowserRouter } from 'react-router-dom';
-import App from './App';
+import LoggedApp from './LoggedApp';
 import reportWebVitals from './reportWebVitals';
 import GlobalStyle from './style/global-styles';
 
@@ -9,7 +9,7 @@ ReactDOM.render(
   <React.StrictMode>
     <BrowserRouter>
       <GlobalStyle />
-      <App />
+      <LoggedApp />
     </BrowserRouter>
   </React.StrictMode>,
   document.getElementById('root')

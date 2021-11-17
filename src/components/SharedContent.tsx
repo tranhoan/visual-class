@@ -37,7 +37,7 @@ const SharedContent: React.FC<Props> = ({
                 {description}
               </S.Description>
               <S.Action>
-                <S.SharedIconContainer as={Link} to='/maxScreen'>
+                <S.SharedIconContainer as={Link} to='/inclass/maxScreen'>
                   <AiOutlineExpand size={16} />
                 </S.SharedIconContainer>
                 <S.SharedIconContainer onClick={hide}>

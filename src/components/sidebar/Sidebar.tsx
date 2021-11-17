@@ -7,11 +7,14 @@ import { IconContext } from 'react-icons/lib';
 import { SidebarContentType } from './SidebarContentFactory';
 import SidebarContentFactory from './SidebarContentFactory';
 import { useTooltip, useTooltipArrayRef } from '../../hooks/tooltip';
-import { sidebarData } from '../../data/sidebar-data';
 import { useUserStore } from '../../hooks/user';
 import shallow from 'zustand/shallow';
+import { SidebarDataRecord } from '../../data/sidebar-data';
 
-const Sidebar: React.FC = () => {
+type Props = {
+  sidebarData: SidebarDataRecord;
+};
+const Sidebar: React.FC<Props> = ({ sidebarData }) => {
   const { contentType, setContentType } = useUserStore(
     (state) => ({
       contentType: state.sidebarContent,

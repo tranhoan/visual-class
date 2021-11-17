@@ -2,7 +2,7 @@ import { ReactElement } from 'react';
 import { HiChartPie, HiChatAlt2, HiCog, HiUsers } from 'react-icons/hi';
 import { SidebarContentType } from '../components/sidebar/SidebarContentFactory';
 
-interface SidebarDataRecord {
+export interface SidebarDataRecord {
   [key: string]: SidebarData;
 }
 export type SidebarData = {

@@ -14,7 +14,7 @@ const MaxedScreenShare: React.FC = () => {
   return (
     <S.MaxedContent>
       <S.Header>
-        <Link to='/classroom'>
+        <Link to='/inclass/classroom'>
           <S.FloatingButton
             className='floating-button'
             renderIcon={() => <HiOutlineChevronLeft size={24} />}
