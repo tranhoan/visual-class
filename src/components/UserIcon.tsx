@@ -26,9 +26,9 @@ const UserIcon: React.FC<Props> = ({ id }) => {
         transform: `scale(${currentUser.room !== null ? '0.7' : '1'})`,
       }}
     >
-      {isWebcamOn && id === 8 ? (
+      {isWebcamOn && currentUser.name === 'Hoang Tran' ? (
         <Video />
-      ) : currentUser.isWebcamTurnedOn && id !== 8 ? (
+      ) : currentUser.isWebcamTurnedOn && currentUser.name !== 'Hoang Tran' ? (
         <UserWebcam autoPlay loop>
           <source src={currentUser.video} />
         </UserWebcam>

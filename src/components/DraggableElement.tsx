@@ -8,11 +8,7 @@ type Props = {
   className?: string;
   isResized?: boolean;
 };
-const DraggableElement: React.FC<Props> = ({
-  renderDraggable,
-  id,
-  isResized,
-}) => {
+const DraggableElement: React.FC<Props> = ({ renderDraggable, id }) => {
   const [position, startPan, isPointerEventDisabled] = usePan(id);
   return (
     <S.DraggableWrapper

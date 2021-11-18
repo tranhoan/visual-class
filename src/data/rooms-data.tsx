@@ -18,7 +18,7 @@ export const roomsData: RoomsDataRecord = {
     currentTeacher: 'Tadeáš Kyral',
     initials: 'TK',
     name: 'I.AG',
-    position: { x: 1600, y: 550 },
+    position: { x: 1600, y: 450 },
     link: '/inclass/classroom',
   },
   room2: {
@@ -26,7 +26,7 @@ export const roomsData: RoomsDataRecord = {
     currentTeacher: 'Dominik Kouba',
     initials: 'DK',
     name: 'II.AG',
-    position: { x: 1923, y: 550 },
+    position: { x: 1923, y: 450 },
     link: '/inclass/classroom',
   },
   room3: {
@@ -34,7 +34,7 @@ export const roomsData: RoomsDataRecord = {
     currentTeacher: 'Dominika Palivcová',
     initials: 'DP',
     name: 'III.AG',
-    position: { x: 2246, y: 550 },
+    position: { x: 2246, y: 450 },
     link: '/inclass/classroom',
   },
   room4: {
@@ -42,7 +42,7 @@ export const roomsData: RoomsDataRecord = {
     currentTeacher: 'Marek Daník',
     initials: 'MD',
     name: 'V.AG',
-    position: { x: 2569, y: 550 },
+    position: { x: 2569, y: 450 },
     link: '/inclass/classroom',
   },
   room5: {
@@ -50,7 +50,7 @@ export const roomsData: RoomsDataRecord = {
     currentTeacher: 'Vojtěch Chmelař',
     initials: 'VC',
     name: 'VI.AG',
-    position: { x: 1600, y: 830 },
+    position: { x: 1600, y: 730 },
     link: '/inclass/classroom',
   },
   room6: {
@@ -58,7 +58,7 @@ export const roomsData: RoomsDataRecord = {
     currentTeacher: 'Martin Zelený',
     initials: 'MZ',
     name: 'VI.BG',
-    position: { x: 1923, y: 830 },
+    position: { x: 1923, y: 730 },
     link: '/inclass/classroom',
   },
   room7: {
@@ -66,7 +66,7 @@ export const roomsData: RoomsDataRecord = {
     currentTeacher: 'Nikita Hošnová',
     initials: 'EC',
     name: 'VII.AG',
-    position: { x: 2246, y: 830 },
+    position: { x: 2246, y: 730 },
     link: '/inclass/classroom',
   },
   room8: {
@@ -74,7 +74,7 @@ export const roomsData: RoomsDataRecord = {
     currentTeacher: 'Hoang Tran',
     initials: 'HT',
     name: 'VII.BG',
-    position: { x: 2569, y: 830 },
+    position: { x: 2569, y: 730 },
     link: '/inclass/classroom',
   },
 };
