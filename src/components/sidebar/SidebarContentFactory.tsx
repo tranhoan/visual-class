@@ -1,6 +1,7 @@
 import React, { Fragment } from 'react';
 import styled from 'styled-components';
 import ParticipantsDetail from '../sidebar/ParticipantsDetail';
+import RoomsDetail from './RoomsDetail';
 
 type Props = {
   contentType: SidebarContent;
@@ -30,6 +31,8 @@ const SidebarContentFactory: React.FC<Props> = ({
     switch (content.type) {
       case SidebarContentType.PARTICIPANTS:
         return <ParticipantsDetail />;
+      case SidebarContentType.ROOMS:
+        return <RoomsDetail />;
     }
   })(contentType);
   return (

@@ -47,6 +47,10 @@ const GlobalStyle = createGlobalStyle`
     #root{
         /* overflow: hidden; */
     }
+
+    a {
+        text-decoration: none;
+    }
 }
 `;
 

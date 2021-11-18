@@ -26,7 +26,7 @@ const Header = styled.div`
   margin-bottom: 3.2rem;
 `;
 export const Content = styled.section<{ $isCollapsed: boolean }>`
-  max-height: ${(props) => (props.$isCollapsed ? '0' : '500px')};
+  max-height: ${(props) => (props.$isCollapsed ? '0' : '600px')};
   --transition-function: ${(props) =>
     props.$isCollapsed ? 'ease-out' : 'ease-in'};
   overflow: hidden;
