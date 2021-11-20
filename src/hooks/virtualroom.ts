@@ -43,7 +43,6 @@ export const useDetectRoomEnter = (
             setParticipants([]);
             navigate(newRoomLink);
           } else {
-            console.log('enter');
             const newParticipants = [...participants];
             newParticipants[participant.id].room = roomId;
             setParticipants(newParticipants);

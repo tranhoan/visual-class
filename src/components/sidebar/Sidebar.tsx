@@ -129,7 +129,8 @@ const S = {
     }
   `,
   SidebarWrapper: styled.div`
-    display: relative;
+    position: relative;
+    z-index: 1;
   `,
 };
 export default Sidebar;

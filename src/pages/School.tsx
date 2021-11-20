@@ -1,5 +1,6 @@
-import React, { Fragment, useEffect } from 'react';
+import React, { Fragment, useEffect, useState } from 'react';
 import DraggableElement from '../components/DraggableElement';
+import InstructionModal from '../components/InstructionModal';
 import Sidebar from '../components/sidebar/Sidebar';
 import UserIcon from '../components/UserIcon';
 import VirtualRoom from '../components/VirtualRoom';
@@ -14,6 +15,8 @@ const School: React.FC = () => {
     state.participants,
     state.setUsers,
   ]);
+
+  const [instructionHidden, setInstructionHidden] = useState(false);
   useEffect(() => {
     setUsers(Object.values(schoolUsers));
   }, [setUsers]);
@@ -45,6 +48,10 @@ const School: React.FC = () => {
       </VirtualSpace>
       ;
       <Sidebar sidebarData={sidebarSchoolData} />
+      <InstructionModal
+        hide={() => setInstructionHidden(true)}
+        isHidden={instructionHidden}
+      />
     </Fragment>
   );
 };

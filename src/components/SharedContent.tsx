@@ -3,7 +3,7 @@ import React, { useState } from 'react';
 import styled from 'styled-components';
 import colors from '../style/colors';
 import DraggableElement from './DraggableElement';
-import { CloseIcon, IconContainer } from './Modal';
+import { CloseIcon, IconContainer } from './layout/Modal';
 import { AiOutlineExpand } from 'react-icons/ai';
 import { Link } from 'react-router-dom';
 

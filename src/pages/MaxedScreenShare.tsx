@@ -4,7 +4,7 @@ import screen from '../resources/sharedScreen.png';
 import Button from '../components/layout/Button';
 import { HiOutlineChevronLeft } from 'react-icons/hi';
 import { Link } from 'react-router-dom';
-import { PrimaryTitle } from '../components/Modal';
+import { PrimaryTitle } from '../components/layout/Modal';
 import videoStudent1 from '../resources/videoStudent1.mp4';
 import videoStudent2 from '../resources/videStudent2.mp4';
 import elevations from '../style/elevations';

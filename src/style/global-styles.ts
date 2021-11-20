@@ -28,6 +28,7 @@ const GlobalStyle = createGlobalStyle`
     --shadow-color: 0deg 0% 0%;
     --hoverPrimaryBlue : rgba(2, 51, 115, 0.1);
     --toolbar-xaxis: -50%;
+    --modalOrange: rgba(257,178,121,0.65);
     height: 100%;
     font-size: 62.5%;
     body, html, #root{ 
@@ -38,7 +39,6 @@ const GlobalStyle = createGlobalStyle`
         -webkit-font-smoothing: antialiased;
         -moz-osx-font-smoothing: grayscale;
         background-color: ${colors.backgroundBlue};
-
     }
     body, button {
         font-family: 'Sora', -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen','Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans', 'Helvetica Neue', sans-serif;

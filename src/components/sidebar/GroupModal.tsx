@@ -3,7 +3,7 @@ import { createPortal } from 'react-dom';
 import styled from 'styled-components';
 import colors from '../../style/colors';
 import elevations from '../../style/elevations';
-import Modal from '../Modal';
+import Modal from '../layout/Modal';
 import { HiOutlineInformationCircle } from 'react-icons/hi';
 import Button from '../layout/Button';
 
