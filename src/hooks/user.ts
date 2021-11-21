@@ -6,6 +6,7 @@ import { UserType } from '../data/users-data';
 type UserDataType = {
   isWebcamOn: boolean;
   isMicOn: boolean;
+  isMegaphoneOn: boolean;
   sidebarContent: SidebarContent;
   isSharingScreen: boolean;
   isLoggedIn: boolean;
@@ -14,6 +15,7 @@ type UserDataType = {
   setSidebarContent: (content: SidebarContent) => void;
   setIsSharingScreen: (isSharing: boolean) => void;
   setIsLoggedIn: (loggedIn: boolean) => void;
+  setIsMegaphoneOn: () => void;
 };
 
 type ParticipantStoreType = {
@@ -24,6 +26,7 @@ type ParticipantStoreType = {
 export const useUserStore = create<UserDataType>((set) => ({
   isWebcamOn: true,
   isMicOn: true,
+  isMegaphoneOn: true,
   isSharingScreen: false,
   sidebarContent: null,
   isLoggedIn: false,
@@ -33,6 +36,8 @@ export const useUserStore = create<UserDataType>((set) => ({
   setSidebarContent: (content) => set({ sidebarContent: content }),
   setIsSharingScreen: (isSharingScreen) => set({ isSharingScreen }),
   setIsLoggedIn: (isLoggedIn) => set({ isLoggedIn }),
+  setIsMegaphoneOn: () =>
+    set((prevState) => ({ isMegaphoneOn: !prevState.isMegaphoneOn })),
 }));
 
 export const useParticipantsStore = create<ParticipantStoreType>((set) => ({

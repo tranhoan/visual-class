@@ -33,7 +33,7 @@ export const useZoomStore = create<ZoomStoreData>((set) => ({
   setZoomLevel: (zoomLevel) => set({ zoomLevel: zoomLevel }),
 }));
 
-const origin = { x: 0, y: 0 };
+const origin = { x: 1082, y: 494 };
 
 const usePan = (
   dragId?: number

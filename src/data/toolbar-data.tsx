@@ -19,7 +19,8 @@ export type ToolbarData = {
 export type ActionType =
   | 'normal'
   | ['isWebcamOn', 'setIsWebcamOn']
-  | ['isMicOn', 'setIsMicOn'];
+  | ['isMicOn', 'setIsMicOn']
+  | ['isMegaphoneOn', 'setIsMegaphoneOn'];
 
 export interface ToolbarDataRecord {
   [key: string]: ToolbarData;
@@ -66,6 +67,6 @@ export const toolbarData: ToolbarDataRecord = {
     name: 'Mluvit na celou třídu',
     renderIcon: () => <HiOutlineSpeakerphone />,
     onClick: () => console.log('hoang'),
-    type: 'normal',
+    type: ['isMegaphoneOn', 'setIsMegaphoneOn'],
   },
 };
