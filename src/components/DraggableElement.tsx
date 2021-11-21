@@ -9,13 +9,14 @@ type Props = {
   isResized?: boolean;
 };
 const DraggableElement: React.FC<Props> = ({ renderDraggable, id }) => {
-  const [position, startPan, isPointerEventDisabled] = usePan(id);
+  const [position, startPan, isPointerEventDisabled, isDragged] = usePan(id);
   return (
     <S.DraggableWrapper
       onMouseDown={(e) => startPan(e)}
       style={{
         transform: `translate(${position.x}px,${position.y}px)`,
         pointerEvents: `${isPointerEventDisabled ? 'none' : 'auto'}`,
+        transition: `${isDragged ? 'none' : '500ms transform ease-in-out'}`,
       }}
     >
       {renderDraggable()}

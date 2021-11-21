@@ -6,6 +6,7 @@ import elevations from '../../style/elevations';
 import Modal from '../layout/Modal';
 import { HiOutlineInformationCircle } from 'react-icons/hi';
 import Button from '../layout/Button';
+import { useCreateGroups } from '../../hooks/virtualroom';
 
 type Props = {
   isHidden: boolean;
@@ -13,6 +14,7 @@ type Props = {
 };
 const GroupModal: React.FC<Props> = ({ isHidden, hide }) => {
   const portalRef = document.getElementById('sidebar-portal') as HTMLElement;
+  const [setGroups] = useCreateGroups();
   return createPortal(
     <S.StyledGroupModal
       isHidden={isHidden}
@@ -31,7 +33,12 @@ const GroupModal: React.FC<Props> = ({ isHidden, hide }) => {
       </S.InfoContent>
       <S.ActionableContent>
         <TertiaryButton onClick={hide}>Zrušit</TertiaryButton>
-        <DialogButton onClick={() => console.log('hoang')}>
+        <DialogButton
+          onClick={() => {
+            setGroups();
+            hide();
+          }}
+        >
           Rozdělit
         </DialogButton>
       </S.ActionableContent>

@@ -65,3 +65,26 @@ export const useDetectRoomEnter = (
   }, [participants, roomId, setParticipants]);
   return [detectEnter, detectLeave, numberInRoom];
 };
+
+export const useCreateGroups = (): [createGroups: () => void] => {
+  const [participants, setParticipants] = useParticipantsStore((state) => [
+    state.participants,
+    state.setUsers,
+  ]);
+
+  const createGroups = () => {
+    const newParticipants = [...participants];
+    newParticipants[0].room = 1;
+    newParticipants[0].roomPosition = { x: 2000, y: 650 };
+    newParticipants[1].room = 1;
+    newParticipants[1].roomPosition = { x: 1950, y: 700 };
+    newParticipants[6].room = 3;
+    newParticipants[6].roomPosition = { x: 2769, y: 700 };
+    newParticipants[7].room = 3;
+    newParticipants[7].roomPosition = { x: 2599, y: 650 };
+
+    setParticipants(newParticipants);
+  };
+
+  return [createGroups];
+};

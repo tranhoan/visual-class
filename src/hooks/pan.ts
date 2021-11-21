@@ -3,6 +3,7 @@ import {
   useRef,
   useState,
   MouseEvent as SyntheticMouseEvent,
+  useEffect,
 } from 'react';
 import create from 'zustand';
 import { useParticipantsStore } from './user';
@@ -36,16 +37,20 @@ const origin = { x: 0, y: 0 };
 
 const usePan = (
   dragId?: number
-): [Point, (e: SyntheticMouseEvent) => void, boolean] => {
+): [Point, (e: SyntheticMouseEvent) => void, boolean, boolean] => {
   const [isPointerEventDisabled, setIsPointerEventDisabled] =
     useState<boolean>(false);
   const participants = useParticipantsStore((state) => state.participants);
+  const [isDragged, setIsDragged] = useState(false);
   const shift = useRef(origin);
   const initialPosition =
     dragId == null ? origin : participants[dragId].roomPosition;
   const [panState, setPanState] = useState<Point>(initialPosition);
   const setIsPanDisabled = usePanStore((state) => state.setIsPanDisabled);
   const zoom = useZoomStore((state) => state.zoomLevel);
+  useEffect(() => {
+    setPanState(initialPosition);
+  }, [initialPosition]);
   const pan = useCallback(
     (e: MouseEvent) => {
       if (dragId != null) {
@@ -69,6 +74,7 @@ const usePan = (
     [zoom, dragId, participants]
   );
   const endPan = useCallback(() => {
+    setIsDragged(false);
     setIsPanDisabled(false);
     if (dragId != null) {
       participants[dragId].isDragged = false;
@@ -80,13 +86,14 @@ const usePan = (
   const startPan = useCallback(
     (e: SyntheticMouseEvent) => {
       shift.current = { x: e.clientX, y: e.clientY };
+      setIsDragged(true);
       setIsPanDisabled(true);
       document.addEventListener('mousemove', pan);
       document.addEventListener('mouseup', endPan);
     },
     [pan, endPan, setIsPanDisabled]
   );
-  return [panState, startPan, isPointerEventDisabled];
+  return [panState, startPan, isPointerEventDisabled, isDragged];
 };
 
 export default usePan;
