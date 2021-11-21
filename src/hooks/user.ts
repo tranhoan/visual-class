@@ -8,10 +8,12 @@ type UserDataType = {
   isMicOn: boolean;
   sidebarContent: SidebarContent;
   isSharingScreen: boolean;
+  isLoggedIn: boolean;
   setIsWebcamOn: () => void;
   setIsMicOn: () => void;
   setSidebarContent: (content: SidebarContent) => void;
   setIsSharingScreen: (isSharing: boolean) => void;
+  setIsLoggedIn: (loggedIn: boolean) => void;
 };
 
 type ParticipantStoreType = {
@@ -24,11 +26,13 @@ export const useUserStore = create<UserDataType>((set) => ({
   isMicOn: true,
   isSharingScreen: false,
   sidebarContent: null,
+  isLoggedIn: false,
   setIsWebcamOn: () =>
     set((prevState) => ({ isWebcamOn: !prevState.isWebcamOn })),
   setIsMicOn: () => set((prevState) => ({ isMicOn: !prevState.isMicOn })),
   setSidebarContent: (content) => set({ sidebarContent: content }),
   setIsSharingScreen: (isSharingScreen) => set({ isSharingScreen }),
+  setIsLoggedIn: (isLoggedIn) => set({ isLoggedIn }),
 }));
 
 export const useParticipantsStore = create<ParticipantStoreType>((set) => ({

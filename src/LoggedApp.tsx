@@ -16,6 +16,7 @@ function LoggedApp() {
           <Route path='maxscreen' element={<MaxedScreenShare />} />
         </Route>
         <Route path='/school' element={<School />} />
+        <Route path='/' element={<School />} />
       </Routes>
       <Toolbar />
       <ToolTip />
