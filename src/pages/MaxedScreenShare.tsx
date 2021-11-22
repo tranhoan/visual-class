@@ -15,7 +15,7 @@ const MaxedScreenShare: React.FC = () => {
     <S.MaxedContent>
       <S.Header>
         <Link to='/inclass/classroom'>
-          <S.FloatingButton
+          <FloatingButton
             className='floating-button'
             renderIcon={() => <HiOutlineChevronLeft size={24} />}
           />
@@ -62,11 +62,6 @@ const S = {
   Body: styled.div`
     display: flex;
   `,
-  FloatingButton: styled(Button)`
-    width: 4.8rem;
-    height: 4.8rem;
-    margin-right: 1.6rem;
-  `,
   Viewers: styled.div`
     display: flex;
     flex-direction: column;
@@ -74,6 +69,11 @@ const S = {
   `,
 };
 
+export const FloatingButton = styled(Button)`
+  width: 4.8rem;
+  height: 4.8rem;
+  margin-right: 1.6rem;
+`;
 export const FloatingUserIcon = styled(UserWebcam)`
   width: 11rem;
   height: 11rem;

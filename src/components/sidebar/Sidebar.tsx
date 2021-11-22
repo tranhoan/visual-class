@@ -131,6 +131,7 @@ const S = {
   SidebarWrapper: styled.div`
     position: relative;
     z-index: 1;
+    display: flex;
   `,
 };
 export default Sidebar;

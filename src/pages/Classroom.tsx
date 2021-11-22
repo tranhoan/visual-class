@@ -1,6 +1,8 @@
 import React, { Fragment, useEffect, useState } from 'react';
+import { HiOutlinePencil } from 'react-icons/hi';
 import styled from 'styled-components';
 import DraggableElement from '../components/DraggableElement';
+import { PrimaryTitle } from '../components/layout/Modal';
 import SharedContent from '../components/SharedContent';
 import UserIcon from '../components/UserIcon';
 import Video from '../components/Video';
@@ -13,7 +15,8 @@ import { useRoomStore } from '../hooks/virtualroom';
 import sharedScreen from '../resources/sharedScreen.png';
 import colors from '../style/colors';
 import elevations from '../style/elevations';
-import { FloatingUserIcon } from './MaxedScreenShare';
+import { FloatingButton, FloatingUserIcon } from './MaxedScreenShare';
+import { RoomDescription } from './School';
 
 const getUsersInRoom = (
   id: number,
@@ -41,11 +44,14 @@ const Classroom: React.FC = () => {
     state.rooms,
     state.setRooms,
   ]);
-  const [setSharing, isSharing, isWebcamOn] = useUserStore((state) => [
-    state.setIsSharingScreen,
-    state.isSharingScreen,
-    state.isWebcamOn,
-  ]);
+  const [setSharing, isSharing, isWebcamOn, sidebarContent] = useUserStore(
+    (state) => [
+      state.setIsSharingScreen,
+      state.isSharingScreen,
+      state.isWebcamOn,
+      state.sidebarContent,
+    ]
+  );
 
   useEffect(() => {
     setUsers(Object.values(participants));
@@ -108,6 +114,13 @@ const Classroom: React.FC = () => {
           );
         })}
       </S.Cameras>
+      <RoomDescription $isSidebarOpen={sidebarContent !== null}>
+        <FloatingButton
+          className='floating-button'
+          renderIcon={() => <HiOutlinePencil size={20} />}
+        />
+        <PrimaryTitle>Třída IV.BG</PrimaryTitle>
+      </RoomDescription>
     </Fragment>
   );
 };

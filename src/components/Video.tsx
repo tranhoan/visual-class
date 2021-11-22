@@ -8,6 +8,7 @@ type Props = {
 const Video: React.FC<Props> = ({ className }) => {
   const videoRef = useRef(null);
   useStreamWebcam(videoRef);
+
   return <S.Video className={className} ref={videoRef}></S.Video>;
 };
 const S = {
