@@ -7,7 +7,7 @@ import floatingIcon2 from '../resources/Icon2.svg';
 import floatingIcon3 from '../resources/Icon3.svg';
 import floatingIcon4 from '../resources/Icon4.svg';
 import Button from '../components/layout/Button';
-import { useUserStore } from '../hooks/user';
+import { useLogin } from '../hooks/login';
 
 const positions = [
   { x: 85, y: 60 },
@@ -32,7 +32,7 @@ const positionEnd = [
 
 const Login: React.FC = () => {
   const [iconPosition, setIconPosition] = useState(positions);
-  const setIsLoggedIn = useUserStore((state) => state.setIsLoggedIn);
+  const [setIsLoggedIn] = useLogin();
 
   return (
     <S.LoginWrapper>
