@@ -34,10 +34,9 @@ const Toolbar: React.FC = () => {
             );
           } else if (item.type === 'link') {
             return (
-              <Link to={item.link ?? 'school'}>
+              <Link to={item.link ?? 'school'} key={item.name}>
                 <ToolbarItemButton
                   onClick={item.onClick}
-                  key={item.name}
                   ref={(e) => (toolbarRefs!.current[i] = e)}
                   onMouseEnter={() =>
                     onMouseEnter(toolbarRefs!.current[i], 'top', item.name)

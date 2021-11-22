@@ -5,14 +5,12 @@ import LoggedApp from './LoggedApp';
 import Login from './pages/Login';
 
 const App: React.FC = () => {
-  const [isLoggedIn, setIsLoggedIn] = useUserStore((state) => [
-    state.isLoggedIn,
-    state.setIsLoggedIn,
-  ]);
-  const [, getLocalStorageLogin] = useLogin();
+  const isLoggedIn = useUserStore((state) => state.isLoggedIn);
+  const [setLocalLoggedIn] = useLogin();
   useEffect(() => {
-    setIsLoggedIn(getLocalStorageLogin());
-  }, [getLocalStorageLogin, setIsLoggedIn]);
+    setLocalLoggedIn(isLoggedIn);
+  }, [isLoggedIn, setLocalLoggedIn]);
+
   return isLoggedIn ? <LoggedApp /> : <Login />;
 };
 export default App;

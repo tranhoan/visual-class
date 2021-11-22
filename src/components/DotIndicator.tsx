@@ -11,8 +11,8 @@ const DotIndicator: React.FC<Props> = ({ numberOfSteps, currentStep }) => {
     <StepIndicator currentStep={currentStep}>
       {Array(numberOfSteps)
         .fill(0)
-        .map((dot) => {
-          return <Dot />;
+        .map((dot, dotIndex) => {
+          return <Dot key={`dotstep${dotIndex}`} />;
         })}
     </StepIndicator>
   );

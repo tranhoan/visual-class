@@ -29,7 +29,7 @@ export const useUserStore = create<UserDataType>((set) => ({
   isMegaphoneOn: true,
   isSharingScreen: false,
   sidebarContent: null,
-  isLoggedIn: false,
+  isLoggedIn: localStorage.getItem('isLoggedIn') === 'true',
   setIsWebcamOn: () =>
     set((prevState) => ({ isWebcamOn: !prevState.isWebcamOn })),
   setIsMicOn: () => set((prevState) => ({ isMicOn: !prevState.isMicOn })),

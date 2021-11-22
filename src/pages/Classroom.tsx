@@ -65,7 +65,6 @@ const Classroom: React.FC = () => {
     if (classParticipants.length === 0) {
       return;
     }
-    console.log('tran');
     const inRoom = getUsersInRoom(8, classParticipants);
     setUsersInRoom(inRoom);
   }, [classParticipants]);
