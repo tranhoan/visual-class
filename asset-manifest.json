@@ -1,0 +1,39 @@
+{
+  "files": {
+    "main.js": "/VisualClass/static/js/main.4a1f8c25.chunk.js",
+    "main.js.map": "/VisualClass/static/js/main.4a1f8c25.chunk.js.map",
+    "runtime-main.js": "/VisualClass/static/js/runtime-main.c2c12e65.js",
+    "runtime-main.js.map": "/VisualClass/static/js/runtime-main.c2c12e65.js.map",
+    "static/js/2.8ce45804.chunk.js": "/VisualClass/static/js/2.8ce45804.chunk.js",
+    "static/js/2.8ce45804.chunk.js.map": "/VisualClass/static/js/2.8ce45804.chunk.js.map",
+    "static/js/3.815cec72.chunk.js": "/VisualClass/static/js/3.815cec72.chunk.js",
+    "static/js/3.815cec72.chunk.js.map": "/VisualClass/static/js/3.815cec72.chunk.js.map",
+    "index.html": "/VisualClass/index.html",
+    "static/js/2.8ce45804.chunk.js.LICENSE.txt": "/VisualClass/static/js/2.8ce45804.chunk.js.LICENSE.txt",
+    "static/media/Icon1.6073fecb.svg": "/VisualClass/static/media/Icon1.6073fecb.svg",
+    "static/media/Icon2.de35f203.svg": "/VisualClass/static/media/Icon2.de35f203.svg",
+    "static/media/Icon3.3c476f24.svg": "/VisualClass/static/media/Icon3.3c476f24.svg",
+    "static/media/Icon4.ebf7fd2a.svg": "/VisualClass/static/media/Icon4.ebf7fd2a.svg",
+    "static/media/dot.3cddcbf7.svg": "/VisualClass/static/media/dot.3cddcbf7.svg",
+    "static/media/drag.dc4c1d11.mp4": "/VisualClass/static/media/drag.dc4c1d11.mp4",
+    "static/media/enter-room.b924672d.mp4": "/VisualClass/static/media/enter-room.b924672d.mp4",
+    "static/media/illustration.862f3a5e.png": "/VisualClass/static/media/illustration.862f3a5e.png",
+    "static/media/logo.3edae271.svg": "/VisualClass/static/media/logo.3edae271.svg",
+    "static/media/lowerStudent.16bbade7.mp4": "/VisualClass/static/media/lowerStudent.16bbade7.mp4",
+    "static/media/lowerStudent2.2e41568c.mp4": "/VisualClass/static/media/lowerStudent2.2e41568c.mp4",
+    "static/media/lowerStudent3.abaa29ec.mp4": "/VisualClass/static/media/lowerStudent3.abaa29ec.mp4",
+    "static/media/lowerStudent4.42444343.mp4": "/VisualClass/static/media/lowerStudent4.42444343.mp4",
+    "static/media/lowerStudent5.abb5c010.mp4": "/VisualClass/static/media/lowerStudent5.abb5c010.mp4",
+    "static/media/lowerStudent6.80b8500e.mp4": "/VisualClass/static/media/lowerStudent6.80b8500e.mp4",
+    "static/media/pan.bc10f154.mp4": "/VisualClass/static/media/pan.bc10f154.mp4",
+    "static/media/sharedScreen.1143ee2d.png": "/VisualClass/static/media/sharedScreen.1143ee2d.png",
+    "static/media/videStudent2.770b0013.mp4": "/VisualClass/static/media/videStudent2.770b0013.mp4",
+    "static/media/videoStudent1.0a45d30c.mp4": "/VisualClass/static/media/videoStudent1.0a45d30c.mp4",
+    "static/media/zoom.6f541693.mp4": "/VisualClass/static/media/zoom.6f541693.mp4"
+  },
+  "entrypoints": [
+    "static/js/runtime-main.c2c12e65.js",
+    "static/js/2.8ce45804.chunk.js",
+    "static/js/main.4a1f8c25.chunk.js"
+  ]
+}
