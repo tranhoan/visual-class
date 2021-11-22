@@ -6,6 +6,7 @@ import { IconContext } from 'react-icons/lib';
 import { toolbarData } from '../data/toolbar-data';
 import { useUserStore } from '../hooks/user';
 import { useTooltip, useTooltipArrayRef } from '../hooks/tooltip';
+import { Link } from 'react-router-dom';
 
 const Toolbar: React.FC = () => {
   const userStore = useUserStore();
@@ -17,19 +18,38 @@ const Toolbar: React.FC = () => {
     <IconContext.Provider value={{ size: '2.4rem' }}>
       <S.ToolbarWrapper isSidebarHidden={userStore.sidebarContent === null}>
         {Object.values(toolbarData).map((item, i) => {
-          return item.type === 'normal' ? (
-            <ToolbarItemButton
-              onClick={item.onClick}
-              key={item.name}
-              ref={(e) => (toolbarRefs!.current[i] = e)}
-              onMouseEnter={() =>
-                onMouseEnter(toolbarRefs!.current[i], 'top', item.name)
-              }
-              onMouseLeave={() => onMouseLeave()}
-            >
-              {item.renderIcon()}
-            </ToolbarItemButton>
-          ) : (
+          if (item.type === 'normal') {
+            return (
+              <ToolbarItemButton
+                onClick={item.onClick}
+                key={item.name}
+                ref={(e) => (toolbarRefs!.current[i] = e)}
+                onMouseEnter={() =>
+                  onMouseEnter(toolbarRefs!.current[i], 'top', item.name)
+                }
+                onMouseLeave={() => onMouseLeave()}
+              >
+                {item.renderIcon()}
+              </ToolbarItemButton>
+            );
+          } else if (item.type === 'link') {
+            return (
+              <Link to={item.link ?? 'school'}>
+                <ToolbarItemButton
+                  onClick={item.onClick}
+                  key={item.name}
+                  ref={(e) => (toolbarRefs!.current[i] = e)}
+                  onMouseEnter={() =>
+                    onMouseEnter(toolbarRefs!.current[i], 'top', item.name)
+                  }
+                  onMouseLeave={() => onMouseLeave()}
+                >
+                  {item.renderIcon()}
+                </ToolbarItemButton>
+              </Link>
+            );
+          }
+          return (
             <ActiveItemButton
               onClick={userStore[item.type[1]]}
               key={item.name}

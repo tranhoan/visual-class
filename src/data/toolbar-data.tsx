@@ -14,13 +14,15 @@ export type ToolbarData = {
   renderIcon: () => ReactElement;
   onClick: () => void;
   type: ActionType;
+  link?: string;
 };
 
 export type ActionType =
   | 'normal'
   | ['isWebcamOn', 'setIsWebcamOn']
   | ['isMicOn', 'setIsMicOn']
-  | ['isMegaphoneOn', 'setIsMegaphoneOn'];
+  | ['isMegaphoneOn', 'setIsMegaphoneOn']
+  | 'link';
 
 export interface ToolbarDataRecord {
   [key: string]: ToolbarData;
@@ -49,7 +51,8 @@ export const toolbarData: ToolbarDataRecord = {
     name: 'Odejít',
     renderIcon: () => <HiOutlineLogout />,
     onClick: () => console.log('hoang'),
-    type: 'normal',
+    type: 'link',
+    link: '/school',
   },
   emojis: {
     name: 'Reakce',
