@@ -2,6 +2,7 @@
   "name": "visualclass",
   "version": "0.1.0",
   "private": true,
+  "homepage": "http://tranhoan.github.io/VisualClass",
   "dependencies": {
     "@testing-library/jest-dom": "^5.15.0",
     "@testing-library/react": "^11.1.0",
@@ -30,7 +31,9 @@
     "start": "react-scripts start",
     "build": "react-scripts build",
     "test": "react-scripts test",
-    "eject": "react-scripts eject"
+    "eject": "react-scripts eject",
+    "predeploy": "npm run build",
+    "deploy": "gh-pages -d build"
   },
   "eslintConfig": {
     "extends": [
@@ -51,6 +54,7 @@
     ]
   },
   "devDependencies": {
-    "@types/styled-components": "^5.1.15"
+    "@types/styled-components": "^5.1.15",
+    "gh-pages": "^3.2.3"
   }
 }
