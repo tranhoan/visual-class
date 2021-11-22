@@ -24,7 +24,7 @@ type ParticipantStoreType = {
 };
 
 export const useUserStore = create<UserDataType>((set) => ({
-  isWebcamOn: true,
+  isWebcamOn: false,
   isMicOn: true,
   isMegaphoneOn: true,
   isSharingScreen: false,
@@ -71,7 +71,6 @@ export const useStreamWebcam = (
     for (let i = 0; i < tracks.length; i++) {
       let track = tracks[i];
       track.stop();
-      console.log('tran');
     }
   }, []);
   useEffect(() => {
