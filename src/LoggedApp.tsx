@@ -6,7 +6,6 @@ import Classroom from './pages/Classroom';
 import InClass from './pages/InClass';
 import MaxedScreenShare from './pages/MaxedScreenShare';
 import School from './pages/School';
-
 function LoggedApp() {
   return (
     <Fragment>
